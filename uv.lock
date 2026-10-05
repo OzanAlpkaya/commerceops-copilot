@@ -1,0 +1,25 @@
+version = 1
+revision = 3
+requires-python = ">=3.12"
+
+[manifest]
+members = [
+    "commerceops-copilot",
+    "copilot",
+    "mock-api",
+]
+
+[[package]]
+name = "commerceops-copilot"
+version = "0.1.0"
+source = { virtual = "." }
+
+[[package]]
+name = "copilot"
+version = "0.1.0"
+source = { editable = "copilot" }
+
+[[package]]
+name = "mock-api"
+version = "0.1.0"
+source = { editable = "mock_api" }
