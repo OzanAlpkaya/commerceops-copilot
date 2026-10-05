@@ -17,3 +17,4 @@ data/raw/
 .DS_Store
 .idea/
 .vscode/
+.claude/settings.local.json

@@ -2,6 +2,7 @@
 
 ## Week 1 — Discovery & prototype
 
+Status: In progress
 Branch: `week-1-discovery-prototype`
 
 ### Definition of Done
@@ -10,7 +11,8 @@ Branch: `week-1-discovery-prototype`
 - [x] Repo skeleton: uv workspace, ruff, pyright, pytest, pre-commit
 - [x] Local Postgres with pgvector via Docker Compose
 - [x] Makefile and CI running `make check`
-- [x] `CLAUDE.md` and `PROGRESS.md`
+- [x] `CLAUDE.md`, `PROGRESS.md`, `docs/ROADMAP.md` and Claude Code skills
+      (`/week-start`, `/week-close`, `/review`)
 - [ ] Mock customer API: orders, customers, products, shipments, returns; API key
       auth, rate limit, cursor pagination
 - [ ] Seed data from the Olist dataset loaded with `make seed`

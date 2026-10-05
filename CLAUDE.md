@@ -30,6 +30,13 @@ context, constraints and pilot scope before planning any work.
 - All LLM and embedding calls go through a provider interface in `copilot`, so
   the provider can change (Amazon Bedrock in week 4).
 
+## Ownership
+
+`docs/ROADMAP.md` lists who writes each area. In Ozan-owned areas (retrieval,
+evals, agent loop and guardrails, eligibility logic, the copilot FastAPI service),
+do not write or rewrite implementation code or its tests unless Ozan explicitly
+asks for it in that message. Offer a plan, hints or `/review` instead.
+
 ## Commands
 
 - `make up` / `make down` / `make reset` / `make psql` — local services
@@ -53,4 +60,6 @@ context, constraints and pilot scope before planning any work.
   the end of the week. No auto-merge.
 - Plan before code: propose an implementation plan and wait for approval before
   writing code.
+- Skills: `/week-start` opens a week, `/week-close` closes it, `/review` reviews
+  Ozan's code in coach mode.
 - Tick the matching item in `PROGRESS.md` when a Definition of Done item is done.
