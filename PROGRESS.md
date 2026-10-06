@@ -13,9 +13,9 @@ Branch: `week-1-discovery-prototype`
 - [x] Makefile and CI running `make check`
 - [x] `CLAUDE.md`, `PROGRESS.md`, `docs/ROADMAP.md` and Claude Code skills
       (`/week-start`, `/week-close`, `/review`)
-- [ ] Mock customer API: orders, customers, products, shipments, returns; API key
+- [x] Mock customer API: orders, customers, products, shipments, returns; API key
       auth, rate limit, cursor pagination
-- [ ] Seed data from the Olist dataset loaded with `make seed`
+- [x] Seed data from the Olist dataset loaded with `make seed`
 - [ ] Document corpus: return policy (two versions, three undecided rules), Slack
       exceptions export, Zendesk macros, supplier PDFs with ground truth
 - [ ] Ingestion and hybrid retrieval (pgvector + full-text search, RRF) with
