@@ -21,9 +21,10 @@ jobs:
       - name: Install dependencies
         run: uv sync --all-packages --locked
 
-      # Same image and init SQL as local development; tests create their own database.
-      - name: Start Postgres
-        run: docker compose up -d --wait db
+      # Same images and init SQL as local development; tests create their own database.
+      # Starting mock-api too proves its image builds and passes its healthcheck.
+      - name: Start services
+        run: docker compose up -d --wait --build
 
       - name: Run checks
         run: make check

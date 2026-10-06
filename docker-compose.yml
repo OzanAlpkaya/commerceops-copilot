@@ -17,5 +17,29 @@ services:
       timeout: 3s
       retries: 10
 
+  mock-api:
+    build:
+      context: .
+      dockerfile: mock_api/Dockerfile
+    container_name: commerceops-mock-api
+    environment:
+      MOCK_API_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-commerceops}:${POSTGRES_PASSWORD:-commerceops}@db:5432/lumora_commerce
+      # Dev-only keys; set MOCK_API_KEYS in .env to change them.
+      MOCK_API_KEYS: ${MOCK_API_KEYS:-copilot:dev-copilot-key:read,admin:dev-admin-key:read+write}
+      MOCK_API_LATENCY_MS: ${MOCK_API_LATENCY_MS:-0}
+      MOCK_API_ERROR_RATE: ${MOCK_API_ERROR_RATE:-0}
+    ports:
+      - "${MOCK_API_PORT:-8001}:8001"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      # The slim image has no curl.
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
 volumes:
   pgdata:

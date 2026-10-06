@@ -16,8 +16,8 @@ COMPOSE := docker compose
 help: ## Show available commands
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(firstword $(MAKEFILE_LIST)) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-14s %s\n", $$1, $$2}'
 
-up: ## Start services and wait until healthy
-	$(COMPOSE) up -d --wait
+up: ## Build and start services, wait until healthy
+	$(COMPOSE) up -d --wait --build
 
 down: ## Stop services
 	$(COMPOSE) down
