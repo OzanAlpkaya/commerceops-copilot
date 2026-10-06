@@ -82,7 +82,12 @@ def write_olist_fixture(directory: Path) -> None:
     for n in range(N_ORDERS):
         oid, cid = _hex(r), _hex(r)
         customers.append([cid, uniques[n % N_CUSTOMERS], "01001", "sao paulo", "SP"])
-        purchased = START + timedelta(seconds=r.random() * span)
+        # A third of the orders fall in the last two months, so recent (open) returns
+        # have enough candidates.
+        if r.random() < 0.35:
+            purchased = END - timedelta(days=r.random() * 60)
+        else:
+            purchased = START + timedelta(seconds=r.random() * span)
         status = r.choices(
             ["delivered", "shipped", "canceled", "processing", "invoiced"],
             weights=[94, 2, 1, 2, 1],
@@ -233,6 +238,10 @@ def seed_config(olist_dir: Path) -> SeedConfig:
         quota_outlet=3,
         quota_coupon=3,
         quota_hygiene=4,
+        open_per_rule=2,
+        open_eligible=2,
+        open_ineligible=2,
+        open_in_progress=2,
     )
 
 

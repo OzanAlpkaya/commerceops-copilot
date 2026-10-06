@@ -3,10 +3,12 @@
 from collections import Counter
 from collections.abc import Mapping
 
-from mock_api.enums import OrderStatus
+from mock_api.enums import OrderStatus, ReturnStatus
 from mock_api.seed.config import SeedConfig
 from mock_api.seed.dataset import SeedDataset
 from mock_api.seed.dates import start_of_day
+
+OPEN_STATUSES = {ReturnStatus.REQUESTED, ReturnStatus.APPROVED, ReturnStatus.RECEIVED}
 
 
 def _pct(part: int, whole: int) -> str:
@@ -35,6 +37,7 @@ def summarize(ds: SeedDataset, cfg: SeedConfig, checksums: Mapping[str, str] | N
     shipments = [o.shipment for o in ds.orders if o.shipment is not None]
     customers_with_orders = Counter(o.customer_id for o in orders)
     returns = ds.returns.returns
+    open_returns = [r for r in returns if r.status in OPEN_STATUSES]
 
     n_products = len(ds.products)
     hygiene = sum(p.is_hygiene for p in ds.products)
@@ -67,6 +70,9 @@ def summarize(ds: SeedDataset, cfg: SeedConfig, checksums: Mapping[str, str] | N
         f"  status            {_counter(Counter(r.status for r in returns))}",
         f"  undecided rules   {_counter(Counter(ds.returns.rules.values()))}",
         f"  note templates    {_counter(Counter(ds.returns.note_ids.values()))}",
+        f"  open              {len(open_returns):,}: "
+        f"{_counter(Counter(r.status for r in open_returns))}",
+        f"  open, targeted    {_counter(Counter(ds.returns.open_kinds.values()))}",
     ]
     if checksums is not None:
         lines += ["", "Table checksums (md5)"]

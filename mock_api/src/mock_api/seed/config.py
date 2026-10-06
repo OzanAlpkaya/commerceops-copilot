@@ -53,3 +53,10 @@ class SeedConfig(BaseSettings):
     quota_outlet: int = 24
     quota_coupon: int = 24
     quota_hygiene: int = 36
+    # Open returns nobody has decided yet (status "requested", no note): per undecided rule
+    # (window, outlet, coupon, hygiene), plus clear-cut eligible and ineligible requests.
+    open_per_rule: int = 3
+    open_eligible: int = 5
+    open_ineligible: int = 4
+    # Clear-cut eligible returns in progress (approved or received).
+    open_in_progress: int = 8

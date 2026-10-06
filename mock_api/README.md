@@ -14,6 +14,9 @@ make psql-commerce
 
 `make seed` reads the Olist CSVs from `data/raw/olist/` (not committed), connects to
 `$POSTGRES_HOST:$POSTGRES_PORT` from `.env`, and prints a summary with table checksums.
+The data is a sample of the order system, not its real volume: 8,000 orders over two
+years (about 11 a day). Don't use it for load, rate or volume estimates.
+
 It is deterministic and idempotent. Each run drops and recreates every table in one
 transaction, so it also wipes returns created through the API and stored idempotency keys.
 
@@ -33,7 +36,7 @@ depend on it.
 | Suppliers | 120 suppliers. Olist sellers are dealt into category-specific suppliers. |
 | Customers | Faker `en_IE` names, Irish towns and Eircodes, and `@example.*` emails. |
 | Shipments | Hollis Freight for orders over 20 kg; otherwise Parcelo, NordPost or SwiftLane Express. |
-| Returns | 6.5% of delivered orders. Fixed quotas cover the undecided policy rules (below). Every other return has a clear outcome. |
+| Returns | 6.5% of delivered orders. Fixed quotas cover the undecided policy rules (decided and still open, below). Every other return has a clear outcome. |
 
 Amounts are Olist's BRL figures relabelled as EUR.
 
@@ -52,14 +55,29 @@ Returns that touch none of the undecided rules follow this placeholder policy an
 
 ### Undecided rules in the data
 
-| Rule | Seeded cases | What makes a case |
-| --- | --- | --- |
-| 1. Window start | 48 (`W1`/`W2`) | v2 order, `changed_mind`, requested after order date + 30 days but within delivery date + 30 days |
-| 2. Campaign items | 24 outlet (`C1`/`C2`/`C5`), 24 coupon (`C3`/`C4`/`C5`) | `changed_mind` on an outlet item, or on an order with a coupon code, inside the window |
-| 3. Hygiene + defective | 36 (`H1`/`H2`) | `defective` hygiene item with `condition = opened`, inside the window |
+| Rule | Decided (closed) | Open (`requested`) | What makes a case |
+| --- | --- | --- | --- |
+| 1. Window start | 48 (`W1`/`W2`) | 3 | v2 order, `changed_mind`, requested after order date + 30 days but within delivery date + 30 days |
+| 2. Campaign items | 24 outlet (`C1`/`C2`/`C5`), 24 coupon (`C3`/`C4`/`C5`) | 3 outlet, 3 coupon | `changed_mind` on an outlet item, or on an order with a coupon code, inside the window |
+| 3. Hygiene + defective | 36 (`H1`/`H2`) | 3 | `defective` hygiene item with `condition = opened`, inside the window |
 
-Each case touches exactly one rule. Outcomes are split between team practices to show the
-inconsistency the discovery found.
+Each case touches exactly one rule. Decided cases are old enough to be closed, and their
+outcomes are split between team practices to show the inconsistency the discovery found.
+
+### Open returns
+
+About 40 returns are open (`requested`, `approved` or `received`). None has an
+`agent_note`, because nobody has decided them yet. Most come from targeted groups
+(counts in `seed/config.py`):
+
+| Group | Count | Status | Shape |
+| --- | --- | --- | --- |
+| Undecided rule | 3 per rule (window, outlet, coupon, hygiene) | `requested` in the last 36 h | As in the table above |
+| Clear-cut eligible | 5 | `requested` in the last 36 h | `changed_mind` or `defective`, non-hygiene, non-campaign, inside every window reading |
+| Clear-cut ineligible | 4 | `requested` in the last 36 h | `changed_mind`, more than 30 days after delivery |
+| In progress | 8 | `approved` or `received` | Clear-cut eligible, requested 3–7 days ago |
+
+The remaining open returns are recent clear cases.
 
 ### `agent_note` templates
 

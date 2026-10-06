@@ -1,10 +1,14 @@
 """Returns. Olist has none, so they are generated for a share of delivered orders.
 
-Two kinds of return are generated:
+Most returns are generated in targeted groups (quotas); the rest are clear cases.
 
-- Undecided cases: a fixed number per open policy rule (window start, campaign items,
-  hygiene + defective). Each case touches exactly one open rule, its outcome is split
-  between team practices, and it carries an agent_note from NOTE_TEMPLATES.
+- Decided undecided-rule cases: a fixed number per open policy rule (window start,
+  campaign items, hygiene + defective). Each touches exactly one open rule, its outcome is
+  split between team practices, it carries an agent_note from NOTE_TEMPLATES, and it is
+  old enough to be closed.
+- Open targeted cases: still in status "requested" (nobody has decided them, so no note
+  and no resolution): a few per open rule, plus clear-cut eligible and clear-cut
+  ineligible requests. A few clear-cut eligible returns are approved or received.
 - Clear cases: everything else. They are kept out of the three undecided zones, so their
   outcome follows from the placeholder policy (v1: window from delivery, v2: window from
   order date, opened hygiene items not returnable) and they carry no note.
@@ -109,7 +113,18 @@ CUSTOMER_COMMENTS: dict[ReturnReason, tuple[str, ...]] = {
         "The {item} was scratched on arrival.",
     ),
 }
-DECIDED_BEFORE = timedelta(days=5)  # undecided-rule cases are old enough to have an outcome
+# Decided undecided-rule cases are requested long enough ago to be closed (the slowest
+# lifecycle takes 18 days), so every open return is one nobody has decided.
+DECIDED_BEFORE = timedelta(days=20)
+# Open "requested" cases were made in the last day and a half.
+PENDING_SINCE = timedelta(hours=36)
+PENDING_UNTIL = timedelta(hours=1)
+# In-progress cases: requested 3-7 days ago, so approved or received but not closed.
+IN_PROGRESS_SINCE = timedelta(days=7)
+IN_PROGRESS_UNTIL = timedelta(days=3)
+
+Window = Callable[[BuiltOrder], tuple[datetime, datetime]]
+LineFilter = Callable[[BuiltOrder], list[OrderItemRow]]
 
 
 @dataclass(frozen=True, slots=True)
@@ -125,9 +140,44 @@ class Case:
     lines: list[ReturnLine]
     reason: ReturnReason
     requested_at: datetime
-    accepted: bool
+    accepted: bool | None  # None: nobody has decided yet (status "requested")
     resolution: ReturnResolution | None
     note_id: str | None
+
+
+@dataclass(frozen=True, slots=True)
+class Variant:
+    """One way a quota case can look; a quota cycles through its variants."""
+
+    reason: ReturnReason
+    condition: ItemCondition
+    accepted: bool | None = None
+    resolution: ReturnResolution | None = None
+    note_id: str | None = None
+
+
+def _decided(*note_ids: str) -> list[Variant]:
+    return [
+        Variant(reason, condition, *NOTE_OUTCOMES[n], note_id=n)
+        for n in note_ids
+        for reason, condition in [NOTE_CASE[n[0]]]
+    ]
+
+
+# Reason and condition by rule letter (W, C, H).
+NOTE_CASE: dict[str, tuple[ReturnReason, ItemCondition]] = {
+    "W": (ReturnReason.CHANGED_MIND, ItemCondition.UNOPENED),
+    "C": (ReturnReason.CHANGED_MIND, ItemCondition.UNOPENED),
+    "H": (ReturnReason.DEFECTIVE, ItemCondition.OPENED),
+}
+OPEN = Variant(ReturnReason.CHANGED_MIND, ItemCondition.UNOPENED)
+OPEN_HYGIENE = Variant(ReturnReason.DEFECTIVE, ItemCondition.OPENED)
+OPEN_ELIGIBLE = [OPEN, Variant(ReturnReason.DEFECTIVE, ItemCondition.OPENED)]
+IN_PROGRESS = [
+    Variant(ReturnReason.DEFECTIVE, ItemCondition.OPENED, True, ReturnResolution.REFUND),
+    Variant(ReturnReason.CHANGED_MIND, ItemCondition.UNOPENED, True, ReturnResolution.REFUND),
+    Variant(ReturnReason.DEFECTIVE, ItemCondition.OPENED, True, ReturnResolution.EXCHANGE),
+]
 
 
 @dataclass(frozen=True, slots=True)
@@ -136,6 +186,9 @@ class GeneratedReturns:
     items: list[ReturnItemRow]
     rules: dict[str, str]  # return id -> undecided rule ("window", "outlet", ...)
     note_ids: dict[str, str]  # return id -> note template id
+    # return id -> targeted open group: an undecided rule, "eligible", "ineligible"
+    # (status requested) or "in_progress" (approved or received)
+    open_kinds: dict[str, str]
 
 
 def _between(r: random.Random, lo: datetime, hi: datetime) -> datetime:
@@ -179,19 +232,68 @@ class _Generator:
     def product(self, item: OrderItemRow) -> ProductRow:
         return self.products[item.sku]
 
-    # Undecided-rule cases -----------------------------------------------------------
+    # Request windows (before clamping to an age band) --------------------------------
 
-    def _quota(
+    def in_window(self, order: BuiltOrder) -> tuple[datetime, datetime]:
+        """In the window under every reading of the policy."""
+        assert order.delivered_at is not None
+        return order.delivered_at + timedelta(hours=6), self.clear_deadline(order)
+
+    def gap(self, order: BuiltOrder) -> tuple[datetime, datetime]:
+        """After order date + window, but within delivery date + window (rule 1)."""
+        assert order.delivered_at is not None
+        lo = max(
+            order.order.placed_at + self.window + timedelta(days=1),
+            order.delivered_at + timedelta(hours=6),
+        )
+        return lo, order.delivered_at + self.window
+
+    def too_late(self, order: BuiltOrder) -> tuple[datetime, datetime]:
+        """After delivery date + window: outside the window under every reading."""
+        assert order.delivered_at is not None
+        lo = order.delivered_at + self.window + timedelta(days=1)
+        return lo, lo + timedelta(days=24)
+
+    def aged(self, window: Window, since: timedelta, until: timedelta) -> Window:
+        """`window` restricted to requests made between now - since and now - until."""
+
+        def clamped(order: BuiltOrder) -> tuple[datetime, datetime]:
+            lo, hi = window(order)
+            return max(lo, self.now - since), min(hi, self.now - until)
+
+        return clamped
+
+    # Line filters ---------------------------------------------------------------------
+
+    def lines_where(
+        self, *, outlet: bool, hygiene: bool, coupon: bool, v2: bool = False
+    ) -> LineFilter:
+        def lines(order: BuiltOrder) -> list[OrderItemRow]:
+            if (order.order.coupon_code is not None) != coupon or (v2 and not self.is_v2(order)):
+                return []
+            return [
+                i
+                for i in order.items
+                if self.product(i).is_outlet == outlet and self.product(i).is_hygiene == hygiene
+            ]
+
+        return lines
+
+    # Quotas -------------------------------------------------------------------------
+
+    def quota(
         self,
-        rule: str,
+        kind: str,
         count: int,
-        note_ids: list[str],
-        qualifies: Callable[[BuiltOrder], list[OrderItemRow]],
-        window: Callable[[BuiltOrder], tuple[datetime, datetime]],
-        reason: ReturnReason,
-        condition: ItemCondition,
+        qualifies: LineFilter,
+        window: Window,
+        variants: Sequence[Variant],
+        min_span: timedelta,
     ) -> list[Case]:
-        r = rng(self.cfg.seed, "returns-quota", rule)
+        """`count` cases on unused orders that qualify and leave room in `window`."""
+        if count == 0:
+            return []
+        r = rng(self.cfg.seed, "returns-quota", kind)
         pool: list[tuple[BuiltOrder, list[OrderItemRow], datetime, datetime]] = []
         for order in self.eligible:
             if order.order.id in self.used:
@@ -200,103 +302,116 @@ class _Generator:
             if not lines:
                 continue
             lo, hi = window(order)
-            if hi - lo >= timedelta(hours=12):
+            if hi - lo >= min_span:
                 pool.append((order, lines, lo, hi))
         if len(pool) < count:
-            raise SeedError(f"Only {len(pool)} orders fit the '{rule}' rule, need {count}.")
+            raise SeedError(f"Only {len(pool)} orders fit '{kind}', need {count}.")
         r.shuffle(pool)
-        notes = [note_ids[i % len(note_ids)] for i in range(count)]
-        r.shuffle(notes)
+        chosen = [variants[i % len(variants)] for i in range(count)]
+        r.shuffle(chosen)
 
         cases: list[Case] = []
-        for (order, lines, lo, hi), note_id in zip(pool[:count], notes, strict=True):
+        for (order, lines, lo, hi), v in zip(pool[:count], chosen, strict=True):
             item = r.choice(lines)
-            accepted, resolution = NOTE_OUTCOMES[note_id]
             self.used.add(order.order.id)
             cases.append(
                 Case(
                     order=order,
-                    lines=[ReturnLine(item, item.quantity, condition)],
-                    reason=reason,
+                    lines=[ReturnLine(item, item.quantity, v.condition)],
+                    reason=v.reason,
                     requested_at=_between(r, lo, hi),
-                    accepted=accepted,
-                    resolution=resolution,
-                    note_id=note_id,
+                    accepted=v.accepted,
+                    resolution=v.resolution,
+                    note_id=v.note_id,
                 )
             )
         return cases
 
-    def _clear_window(self, order: BuiltOrder) -> tuple[datetime, datetime]:
-        assert order.delivered_at is not None
-        return (
-            order.delivered_at + timedelta(hours=6),
-            min(self.clear_deadline(order), self.now - DECIDED_BEFORE),
-        )
-
-    def _gap_window(self, order: BuiltOrder) -> tuple[datetime, datetime]:
-        """After order date + window, but within delivery date + window (rule 1)."""
-        assert order.delivered_at is not None
-        lo = max(
-            order.order.placed_at + self.window + timedelta(days=1),
-            order.delivered_at + timedelta(hours=6),
-        )
-        return lo, min(order.delivered_at + self.window, self.now - DECIDED_BEFORE)
-
-    def _lines_where(self, order: BuiltOrder, *, outlet: bool, hygiene: bool) -> list[OrderItemRow]:
-        return [
-            i
-            for i in order.items
-            if self.product(i).is_outlet == outlet and self.product(i).is_hygiene == hygiene
-        ]
-
-    def undecided_cases(self) -> dict[str, list[Case]]:
+    def targeted_cases(self) -> dict[str, list[Case]]:
+        """Every quota, keyed by kind. Decided kinds come first, then the open ones."""
         cfg = self.cfg
+        hygiene = self.lines_where(outlet=False, hygiene=True, coupon=False)
+        window_rule = self.lines_where(outlet=False, hygiene=False, coupon=False, v2=True)
+        outlet = self.lines_where(outlet=True, hygiene=False, coupon=False)
+        coupon = self.lines_where(outlet=False, hygiene=False, coupon=True)
+        plain = self.lines_where(outlet=False, hygiene=False, coupon=False)
 
-        def no_coupon(lines: Callable[[BuiltOrder], list[OrderItemRow]]):
-            return lambda o: [] if o.order.coupon_code else lines(o)
+        def decided(window: Window) -> Window:
+            return self.aged(window, timedelta(days=3650), DECIDED_BEFORE)
 
+        def pending(window: Window) -> Window:
+            return self.aged(window, PENDING_SINCE, PENDING_UNTIL)
+
+        long, short = timedelta(hours=12), timedelta(hours=2)
+        pending_n = cfg.open_per_rule
         return {
-            "hygiene": self._quota(
+            "hygiene": self.quota(
                 "hygiene",
                 cfg.quota_hygiene,
-                ["H1", "H2"],
-                no_coupon(lambda o: self._lines_where(o, outlet=False, hygiene=True)),
-                self._clear_window,
-                ReturnReason.DEFECTIVE,
-                ItemCondition.OPENED,
+                hygiene,
+                decided(self.in_window),
+                _decided("H1", "H2"),
+                long,
             ),
-            "window": self._quota(
+            "window": self.quota(
                 "window",
                 cfg.quota_window,
-                ["W1", "W2"],
-                no_coupon(
-                    lambda o: (
-                        self._lines_where(o, outlet=False, hygiene=False) if self.is_v2(o) else []
-                    )
-                ),
-                self._gap_window,
-                ReturnReason.CHANGED_MIND,
-                ItemCondition.UNOPENED,
+                window_rule,
+                decided(self.gap),
+                _decided("W1", "W2"),
+                long,
             ),
-            "outlet": self._quota(
+            "outlet": self.quota(
                 "outlet",
                 cfg.quota_outlet,
-                ["C1", "C2", "C5"],
-                no_coupon(lambda o: self._lines_where(o, outlet=True, hygiene=False)),
-                self._clear_window,
-                ReturnReason.CHANGED_MIND,
-                ItemCondition.UNOPENED,
+                outlet,
+                decided(self.in_window),
+                _decided("C1", "C2", "C5"),
+                long,
             ),
-            "coupon": self._quota(
+            "coupon": self.quota(
                 "coupon",
                 cfg.quota_coupon,
-                ["C3", "C4", "C5"],
-                lambda o: (
-                    self._lines_where(o, outlet=False, hygiene=False) if o.order.coupon_code else []
-                ),
-                self._clear_window,
-                ReturnReason.CHANGED_MIND,
-                ItemCondition.UNOPENED,
+                coupon,
+                decided(self.in_window),
+                _decided("C3", "C4", "C5"),
+                long,
+            ),
+            "open:hygiene": self.quota(
+                "open:hygiene", pending_n, hygiene, pending(self.in_window), [OPEN_HYGIENE], short
+            ),
+            "open:window": self.quota(
+                "open:window", pending_n, window_rule, pending(self.gap), [OPEN], short
+            ),
+            "open:outlet": self.quota(
+                "open:outlet", pending_n, outlet, pending(self.in_window), [OPEN], short
+            ),
+            "open:coupon": self.quota(
+                "open:coupon", pending_n, coupon, pending(self.in_window), [OPEN], short
+            ),
+            "open:eligible": self.quota(
+                "open:eligible",
+                cfg.open_eligible,
+                plain,
+                pending(self.in_window),
+                OPEN_ELIGIBLE,
+                short,
+            ),
+            "open:ineligible": self.quota(
+                "open:ineligible",
+                cfg.open_ineligible,
+                plain,
+                pending(self.too_late),
+                [OPEN],
+                short,
+            ),
+            "open:in_progress": self.quota(
+                "open:in_progress",
+                cfg.open_in_progress,
+                plain,
+                self.aged(self.in_window, IN_PROGRESS_SINCE, IN_PROGRESS_UNTIL),
+                IN_PROGRESS,
+                long,
             ),
         }
 
@@ -393,6 +508,8 @@ def _lifecycle(
     """(status, updated_at, closed_at) for a case, from its age at 'now'."""
     requested = case.requested_at
     age = now - requested
+    if case.accepted is None:
+        return ReturnStatus.REQUESTED, requested, None
     if not case.accepted:
         if age < timedelta(days=2) and case.note_id is None:
             return ReturnStatus.REQUESTED, requested, None
@@ -436,9 +553,9 @@ def build_returns(
     """`products` is keyed by SKU."""
     generator = _Generator(orders, products, cfg, now)
     target = math.floor(cfg.return_rate * len(generator.eligible) + 0.5)
-    undecided = generator.undecided_cases()
-    rule_of: dict[int, str] = {id(c): rule for rule, cases in undecided.items() for c in cases}
-    quota_cases = [c for cases in undecided.values() for c in cases]
+    targeted = generator.targeted_cases()
+    kind_of: dict[int, str] = {id(c): kind for kind, cases in targeted.items() for c in cases}
+    quota_cases = [c for cases in targeted.values() for c in cases]
     cases = quota_cases + generator.clear_cases(max(target - len(quota_cases), 0))
     cases.sort(key=lambda c: (c.requested_at, c.order.order.id))
 
@@ -446,6 +563,7 @@ def build_returns(
     items: list[ReturnItemRow] = []
     rules: dict[str, str] = {}
     note_ids: dict[str, str] = {}
+    open_kinds: dict[str, str] = {}
     for number, case in enumerate(cases, start=100001):
         return_id = f"RMA-{number}"
         r = rng(cfg.seed, "return-details", case.order.order.id)
@@ -463,7 +581,12 @@ def build_returns(
                 order_id=case.order.order.id,
                 status=status.value,
                 reason=case.reason.value,
-                resolution=case.resolution.value if case.resolution else None,
+                # A request nobody has handled yet has no resolution.
+                resolution=(
+                    case.resolution.value
+                    if case.resolution and status is not ReturnStatus.REQUESTED
+                    else None
+                ),
                 requested_at=case.requested_at,
                 updated_at=updated_at,
                 closed_at=closed_at,
@@ -483,8 +606,15 @@ def build_returns(
             )
             for ln in case.lines
         )
-        if id(case) in rule_of:
-            rules[return_id] = rule_of[id(case)]
+        kind = kind_of.get(id(case))
+        if kind is not None:
+            group = kind.removeprefix("open:")
+            if group in ("window", "outlet", "coupon", "hygiene"):
+                rules[return_id] = group
+            if kind.startswith("open:"):
+                open_kinds[return_id] = group
         if case.note_id is not None:
             note_ids[return_id] = case.note_id
-    return GeneratedReturns(returns=returns, items=items, rules=rules, note_ids=note_ids)
+    return GeneratedReturns(
+        returns=returns, items=items, rules=rules, note_ids=note_ids, open_kinds=open_kinds
+    )

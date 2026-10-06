@@ -1,5 +1,5 @@
 from collections import Counter
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 import pytest
 
@@ -11,6 +11,8 @@ from mock_api.seed.orders import BuiltOrder
 from mock_api.seed.returns import NOTE_OUTCOMES
 from mock_api.seed.rows import ProductRow, ReturnItemRow, ReturnRow
 
+OPEN = (ReturnStatus.REQUESTED, ReturnStatus.APPROVED, ReturnStatus.RECEIVED)
+CLOSED = (ReturnStatus.REFUNDED, ReturnStatus.EXCHANGED, ReturnStatus.REJECTED)
 RULE_ZONE = {"window": "window", "outlet": "campaign", "coupon": "campaign", "hygiene": "hygiene"}
 
 
@@ -48,7 +50,14 @@ class Ctx:
             zones.add("hygiene")
         return zones
 
-    def clear_deadline(self, ret: ReturnRow):
+    def opened_hygiene(self, ret: ReturnRow) -> bool:
+        return any(
+            self.products[self.skus[ln.order_item_id]].is_hygiene
+            and ln.condition == ItemCondition.OPENED
+            for ln in self.lines[ret.id]
+        )
+
+    def clear_deadline(self, ret: ReturnRow) -> datetime:
         built = self.orders[ret.order_id]
         assert built.delivered_at is not None
         if built.order.placed_at >= self.policy_change:
@@ -63,20 +72,19 @@ def ctx(dataset: SeedDataset, seed_config: SeedConfig) -> Ctx:
 
 def test_quotas_are_met_with_both_outcomes(dataset: SeedDataset, seed_config: SeedConfig) -> None:
     rules = Counter(dataset.returns.rules.values())
+    pending = seed_config.open_per_rule
     assert rules == {
-        "window": seed_config.quota_window,
-        "outlet": seed_config.quota_outlet,
-        "coupon": seed_config.quota_coupon,
-        "hygiene": seed_config.quota_hygiene,
+        "window": seed_config.quota_window + pending,
+        "outlet": seed_config.quota_outlet + pending,
+        "coupon": seed_config.quota_coupon + pending,
+        "hygiene": seed_config.quota_hygiene + pending,
     }
-    status = {r.id: r.status for r in dataset.returns.returns}
+    by_id = {r.id: r for r in dataset.returns.returns}
     for rule in rules:
-        outcomes = {
-            status[rid] == ReturnStatus.REJECTED
-            for rid, r in dataset.returns.rules.items()
-            if r == rule
-        }
+        decided = [by_id[rid] for rid, r in dataset.returns.rules.items() if r == rule]
+        outcomes = {ret.status == ReturnStatus.REJECTED for ret in decided if ret.agent_note}
         assert outcomes == {True, False}, f"{rule} cases need both outcomes"
+        assert all(ret.status in CLOSED for ret in decided if ret.agent_note)
 
 
 def test_undecided_cases_touch_exactly_their_rule(dataset: SeedDataset, ctx: Ctx) -> None:
@@ -87,7 +95,43 @@ def test_undecided_cases_touch_exactly_their_rule(dataset: SeedDataset, ctx: Ctx
             assert ret.agent_note is None
         else:
             assert ctx.zones(ret) == {RULE_ZONE[rule]}, ret.id
-            assert ret.agent_note is not None and "{" not in ret.agent_note
+            is_open = ret.id in dataset.returns.open_kinds
+            assert (ret.agent_note is None) == is_open, ret.id
+            assert ret.agent_note is None or "{" not in ret.agent_note
+
+
+def test_open_returns_are_undecided(dataset: SeedDataset) -> None:
+    for ret in dataset.returns.returns:
+        if ret.status in OPEN:
+            assert ret.agent_note is None, f"{ret.id} is open but has a decision note"
+        if ret.status == ReturnStatus.REQUESTED:
+            assert ret.resolution is None, f"{ret.id} is undecided but has a resolution"
+
+
+def test_targeted_open_returns(dataset: SeedDataset, ctx: Ctx, seed_config: SeedConfig) -> None:
+    by_id = {r.id: r for r in dataset.returns.returns}
+    kinds = Counter(dataset.returns.open_kinds.values())
+    assert kinds == {
+        **{rule: seed_config.open_per_rule for rule in RULE_ZONE},
+        "eligible": seed_config.open_eligible,
+        "ineligible": seed_config.open_ineligible,
+        "in_progress": seed_config.open_in_progress,
+    }
+    for return_id, kind in dataset.returns.open_kinds.items():
+        ret = by_id[return_id]
+        if kind == "in_progress":
+            assert ret.status in (ReturnStatus.APPROVED, ReturnStatus.RECEIVED), return_id
+            assert ctx.zones(ret) == set() and ret.requested_at <= ctx.clear_deadline(ret)
+            continue
+        assert ret.status == ReturnStatus.REQUESTED and ret.resolution is None, return_id
+        assert dataset.now - ret.requested_at <= timedelta(hours=36)
+        if kind == "eligible":
+            assert ctx.zones(ret) == set() and ret.requested_at <= ctx.clear_deadline(ret)
+            assert not ctx.opened_hygiene(ret)
+        elif kind == "ineligible":
+            assert ctx.zones(ret) == set() and ret.requested_at > ctx.clear_deadline(ret)
+        else:
+            assert ctx.zones(ret) == {RULE_ZONE[kind]}
 
 
 def test_notes_match_outcomes(dataset: SeedDataset) -> None:
@@ -113,14 +157,9 @@ def test_clear_outcomes_follow_the_placeholder_policy(dataset: SeedDataset, ctx:
     for ret in dataset.returns.returns:
         if ret.id in dataset.returns.rules or ret.status == ReturnStatus.REQUESTED:
             continue
-        lines = ctx.lines[ret.id]
-        opened_hygiene = any(
-            ctx.products[ctx.skus[ln.order_item_id]].is_hygiene
-            and ln.condition == ItemCondition.OPENED
-            for ln in lines
-        )
         too_late = ret.requested_at > ctx.clear_deadline(ret)
-        assert (ret.status == ReturnStatus.REJECTED) == (too_late or opened_hygiene), ret.id
+        rejected = ret.status == ReturnStatus.REJECTED
+        assert rejected == (too_late or ctx.opened_hygiene(ret)), ret.id
 
 
 def test_return_rows_are_consistent(dataset: SeedDataset, ctx: Ctx) -> None:
