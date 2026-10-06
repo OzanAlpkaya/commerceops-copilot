@@ -1,15 +1,57 @@
 # mock-api: Lumora Home order system (simulated)
 
-A stand-in for Lumora Home's in-house order system: its database (`lumora_commerce`) and,
-from checkpoint 2, its REST API. `copilot` treats it as a third-party system and only talks
-to it over HTTP.
+A stand-in for Lumora Home's in-house order system: its database (`lumora_commerce`) and
+its REST API. `copilot` treats it as a third-party system and only talks to it over HTTP.
+
+```bash
+make up      # Postgres + the API on http://localhost:8001
+make seed    # reset lumora_commerce to the seed state (~5 s)
+curl -H 'X-API-Key: dev-copilot-key' localhost:8001/orders/LH-1004205
+```
+
+## API
+
+The client was handed a static spec, served at `GET /openapi.yaml`. It is partly outdated;
+the internal section below lists where. FastAPI's generated docs (`/docs`, `/redoc`,
+`/openapi.json`) are disabled.
+
+| Endpoint | Notes |
+| --- | --- |
+| `GET /customers/{id}`, `GET /customers?email=` | Email match is exact and case-insensitive. |
+| `GET /orders/{id}` | Includes items with product names. |
+| `GET /orders?customer_id=&status=` | Newest first. `status` accepts either enum and matches the stored value. |
+| `GET /orders/{id}/shipment` | 404 if the order has no shipment yet. |
+| `GET /products/{sku}`, `GET /products?supplier_id=` | By SKU. |
+| `GET /returns/{id}`, `GET /returns?order_id=` | Newest first, with items. |
+| `POST /returns` | Needs the `write` scope and an `Idempotency-Key` header; creates a `requested` return. |
+| `GET /health` | No auth. Checks the database. |
+
+How the API behaves across endpoints:
+
+- **Auth.** `X-API-Key` header, one key per client, from
+  `MOCK_API_KEYS=name:key:scopes,...`. The scopes are `read` and `write` (`read+write` for
+  both). A missing or unknown key gets 401; a missing scope gets 403.
+- **Rate limit.** 100 requests per minute per key, as a sliding window kept in memory (so
+  the service runs one worker). Over the limit you get 429 with `Retry-After` in seconds.
+  Every response carries `X-RateLimit-Limit` and `X-RateLimit-Remaining`.
+- **Pagination.** `limit` (1–100, default 25) and an opaque `cursor`; responses look like
+  `{"data": [...], "next_cursor": "..." | null}`. A malformed cursor gets 400.
+- **Errors.** Always `{"error": {"code": "...", "message": "..."}}`.
+- **Money.** Decimal strings (`"59.90"`), in EUR.
+- **Idempotency.** Same key and same body replays the stored 201, with
+  `Idempotent-Replayed: true`. Same key with a different body gets 422. Keys are per client,
+  and failed requests are not stored.
+- **No policy checks on create.** `POST /returns` checks structure only: the order exists
+  and is delivered (`delivered` or `COMPLETED`), and the items belong to it with enough
+  quantity left. Like the real system, it does not enforce return windows or policy rules.
+- **Realism flags** (off by default). `MOCK_API_LATENCY_MS` (`250` or `50-400`) adds
+  latency, and `MOCK_API_ERROR_RATE` (0–1) answers that share of requests with a random
+  500/502/503. `/health` is exempt from both.
 
 ## Seed
 
 ```bash
-make up      # Postgres
-make seed    # reset lumora_commerce to the seed state (~5 s)
-make psql-commerce
+make psql-commerce   # psql on lumora_commerce
 ```
 
 `make seed` reads the Olist CSVs from `data/raw/olist/` (not committed), connects to
@@ -97,6 +139,22 @@ The Day 3 Slack-exceptions corpus must use this exact wording and the
 | `C5` | 2 either | rejected | Campaign item, changed mind. Return rejected; customer offered store credit. |
 | `H1` | 3 hygiene | approved, refund | Hygiene item opened but defective. Accepted as an exception, see #returns-exceptions. |
 | `H2` | 3 hygiene | rejected | Hygiene item opened. Rejected under the opened-packaging rule; defect claim not assessed. |
+
+### Spec drift
+
+How the static `openapi.yaml` differs from the live API. `tests/api/test_spec_drift.py`
+pins this list.
+
+| Where | The spec says | The API does |
+| --- | --- | --- |
+| Customer | `first_name`, `last_name` | a single `name` |
+| Order | `total` | `total_amount`, plus `currency` |
+| Order | no `coupon_code` or `discount_amount` | returns both |
+| Order status | the current enum only | legacy values for orders before 2025-09-01 |
+| Product | no `is_hygiene` or `is_outlet` | returns both |
+| Shipment | `eta` and `tracking_url` | `estimated_delivery_at`, and no tracking URL |
+| Responses | no 429 or `Retry-After` | rate limits at 100 requests/min |
+| Auth | one key, no scopes mentioned | `read` and `write` scopes (403 without `write`) |
 
 ### Other traps
 

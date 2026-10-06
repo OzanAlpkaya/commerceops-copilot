@@ -1,2 +1,1 @@
-def hello() -> str:
-    return "Hello from mock-api!"
+"""Lumora Home's order system, simulated: database schema, seed and REST API."""
