@@ -21,6 +21,8 @@ dev = [
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+# src layout: lets isort tell workspace packages (first-party) from dependencies.
+src = ["mock_api/src", "copilot/src"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
