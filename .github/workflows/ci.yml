@@ -21,5 +21,9 @@ jobs:
       - name: Install dependencies
         run: uv sync --all-packages --locked
 
+      # Same image and init SQL as local development; tests create their own database.
+      - name: Start Postgres
+        run: docker compose up -d --wait db
+
       - name: Run checks
         run: make check
