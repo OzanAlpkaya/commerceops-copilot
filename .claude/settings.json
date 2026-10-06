@@ -1,0 +1,54 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make check)",
+      "Bash(make lint)",
+      "Bash(make format)",
+      "Bash(make typecheck)",
+      "Bash(make test)",
+      "Bash(make ps)",
+      "Bash(make up)",
+      "Bash(make seed)",
+      "Bash(uv run pytest *)",
+      "Bash(uv run ruff *)",
+      "Bash(uv run pyright *)",
+      "Bash(uv run pre-commit *)",
+      "Bash(uv sync *)",
+      "Bash(uv lock *)",
+      "Bash(uv run --package mock-api python -m mock_api.seed *)",
+      "Bash(docker compose ps *)",
+      "Bash(docker compose logs *)",
+      "Bash(docker compose build *)",
+      "Bash(docker compose up *)",
+      "Bash(docker compose exec -T db psql *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh run list *)",
+      "Bash(gh run view *)",
+      "Bash(gh run watch *)",
+      "Bash(curl -s http://localhost:8001/*)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(git stash *)",
+      "Bash(make reset)",
+      "Bash(docker compose down *)",
+      "Bash(uv add *)",
+      "Bash(uv remove *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Bash(cat .env)",
+      "Bash(cat .env *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(gh pr merge *)"
+    ]
+  }
+}

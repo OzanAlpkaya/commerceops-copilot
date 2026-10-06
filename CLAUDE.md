@@ -53,6 +53,8 @@ asks for it in that message. Offer a plan, hints or `/review` instead.
 - Tests live in `<package>/tests`. Every bug fix comes with a test.
 - Code, comments, docs and commit messages are in English.
 - Conventional commits: `feat`, `fix`, `chore`, `docs`, `test`, `ci`, `refactor`.
+- Run one simple command per tool call. Avoid chaining with `&&`, `;` or `|` and avoid `cd`
+  prefixes, so the permission rules in `.claude/settings.json` can match.
 
 ## Workflow
 
