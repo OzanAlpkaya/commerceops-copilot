@@ -441,14 +441,16 @@ class _Generator:
 
         # Late requests come after delivery + window, which is past every window reading.
         lo = delivered + self.window + timedelta(days=1)
-        hi = min(delivered + self.window + timedelta(days=25), self.now)
+        latest = self.now - PENDING_UNTIL  # nothing lands on the as-of instant itself
+        hi = min(delivered + self.window + timedelta(days=25), latest)
         late_request = (
             reason is ReturnReason.CHANGED_MIND and r.random() < LATE_REQUEST_SHARE and hi > lo
         )
         if not late_request:
             min_days, max_days = REQUEST_DELAY[reason]
-            hi = min(delivered + timedelta(days=max_days), self.clear_deadline(order), self.now)
-            lo = min(delivered + timedelta(days=min_days), hi)
+            hi = min(delivered + timedelta(days=max_days), self.clear_deadline(order), latest)
+            # Recently delivered: squeeze the delay into the time since delivery.
+            lo = min(delivered + timedelta(days=min_days), delivered + (hi - delivered) / 2)
             if hi <= delivered:
                 return None
 

@@ -1,4 +1,6 @@
+import random
 from collections import Counter
+from dataclasses import replace
 from datetime import datetime, timedelta
 
 import pytest
@@ -8,7 +10,7 @@ from mock_api.seed.config import SeedConfig
 from mock_api.seed.dataset import SeedDataset
 from mock_api.seed.dates import start_of_day
 from mock_api.seed.orders import BuiltOrder
-from mock_api.seed.returns import NOTE_OUTCOMES
+from mock_api.seed.returns import NOTE_OUTCOMES, _Generator
 from mock_api.seed.rows import ProductRow, ReturnItemRow, ReturnRow
 
 OPEN = (ReturnStatus.REQUESTED, ReturnStatus.APPROVED, ReturnStatus.RECEIVED)
@@ -171,6 +173,7 @@ def test_return_rows_are_consistent(dataset: SeedDataset, ctx: Ctx) -> None:
         built = ctx.orders[ret.order_id]
         assert built.delivered_at is not None
         assert built.delivered_at <= ret.requested_at <= ret.updated_at <= dataset.now
+        assert ret.requested_at <= dataset.now - timedelta(hours=1), ret.id
         closed = ret.status in (
             ReturnStatus.REFUNDED,
             ReturnStatus.EXCHANGED,
@@ -183,3 +186,22 @@ def test_return_rows_are_consistent(dataset: SeedDataset, ctx: Ctx) -> None:
             assert line.order_item_id in order_items
             assert 1 <= line.quantity <= order_items[line.order_item_id].quantity
     assert [r.id for r in returns] == [f"RMA-{100001 + i}" for i in range(len(returns))]
+
+
+def test_just_delivered_orders_are_not_requested_at_the_as_of_instant(
+    dataset: SeedDataset, seed_config: SeedConfig
+) -> None:
+    template = next(o for o in dataset.orders if o.delivered_at is not None and o.shipment)
+    order = replace(
+        template,
+        order=replace(template.order, placed_at=dataset.now - timedelta(days=3)),
+        delivered_at=dataset.now - timedelta(hours=2),
+    )
+    products = {p.sku: p for p in dataset.products}
+    generator = _Generator([order], products, seed_config, dataset.now)
+
+    for i in range(50):
+        case = generator.clear_case(order, random.Random(i))
+        assert case is not None
+        assert order.delivered_at is not None
+        assert order.delivered_at <= case.requested_at <= dataset.now - timedelta(hours=1)
