@@ -36,6 +36,7 @@ depend on it.
 | Suppliers | 120 suppliers. Olist sellers are dealt into category-specific suppliers. |
 | Customers | Faker `en_IE` names, Irish towns and Eircodes, and `@example.*` emails. |
 | Shipments | Hollis Freight for orders over 20 kg; otherwise Parcelo, NordPost or SwiftLane Express. |
+| In transit | About 20 recent orders are in transit, a third of them a few days past their ETA. 8 lost parcels; other stale Olist shipments are marked delivered near their ETA. Orders with a return are never changed. |
 | Returns | 6.5% of delivered orders. Fixed quotas cover the undecided policy rules (decided and still open, below). Every other return has a clear outcome. |
 
 Amounts are Olist's BRL figures relabelled as EUR.
@@ -101,5 +102,10 @@ The Day 3 Slack-exceptions corpus must use this exact wording and the
 
 - `?status=` matches the stored value literally, so `status=delivered` does not return
   legacy `COMPLETED` orders.
-- Some legacy orders are still `DISPATCHED` with an in-transit shipment more than a year
-  later (lost parcels).
+- 25 legacy orders are still `DISPATCHED` with an in-transit shipment, never closed by
+  the old system. They are data-quality leftovers, not real parcels.
+- 8 current orders are `shipped` and weeks to months past their estimated delivery: lost
+  parcels, spread across ages.
+- Orders placed in the last 10 days are in transit (fewer than 20 when the sample has
+  fewer). About a third are already a few days past their ETA: the "where is my order?"
+  cases.

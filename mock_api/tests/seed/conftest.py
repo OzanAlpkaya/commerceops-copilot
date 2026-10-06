@@ -25,8 +25,8 @@ from mock_api.seed.olist import (
     load_olist,
 )
 
-N_ORDERS = 400
-N_CUSTOMERS = 260
+N_ORDERS = 600
+N_CUSTOMERS = 390
 PRODUCT_MIX = (
     ("cama_mesa_banho", 50, (100, 6000)),
     ("moveis_decoracao", 25, (100, 30000)),
@@ -83,8 +83,12 @@ def write_olist_fixture(directory: Path) -> None:
         oid, cid = _hex(r), _hex(r)
         customers.append([cid, uniques[n % N_CUSTOMERS], "01001", "sao paulo", "SP"])
         # A third of the orders fall in the last two months, so recent (open) returns
-        # have enough candidates.
-        if r.random() < 0.35:
+        # have enough candidates; a few land in the last week with quick delivery, so
+        # recent delivered orders exist for the in-transit step.
+        bucket = r.random()
+        if bucket < 0.06:
+            purchased = END - timedelta(days=r.random() * 7)
+        elif bucket < 0.35:
             purchased = END - timedelta(days=r.random() * 60)
         else:
             purchased = START + timedelta(seconds=r.random() * span)
@@ -94,7 +98,11 @@ def write_olist_fixture(directory: Path) -> None:
         )[0]
         approved = purchased + timedelta(hours=r.uniform(0.2, 30))
         carrier = approved + timedelta(days=r.uniform(0.5, 3))
-        delivered = carrier + timedelta(days=r.uniform(1, 40))
+        # Half the deliveries are quick, so recent delivered orders exist too.
+        quick = bucket < 0.06 or r.random() < 0.5
+        delivered = carrier + timedelta(
+            days=r.uniform(0.5, 3 if bucket < 0.06 else 6 if quick else 40)
+        )
         estimated = purchased + timedelta(days=20)
         orders.append(
             [
@@ -230,7 +238,7 @@ def seed_config(olist_dir: Path) -> SeedConfig:
     return SeedConfig(
         _env_file=None,  # type: ignore[call-arg]
         source_dir=olist_dir,
-        target_orders=300,
+        target_orders=450,
         supplier_count=8,
         outlet_share=0.2,
         return_rate=0.12,
@@ -242,6 +250,8 @@ def seed_config(olist_dir: Path) -> SeedConfig:
         open_eligible=2,
         open_ineligible=2,
         open_in_progress=2,
+        lost_parcels=2,
+        recent_transit=20,  # more than the fixture has in transit, so delivered orders top up
     )
 
 

@@ -164,9 +164,7 @@ def test_clear_outcomes_follow_the_placeholder_policy(dataset: SeedDataset, ctx:
 
 def test_return_rows_are_consistent(dataset: SeedDataset, ctx: Ctx) -> None:
     returns = dataset.returns.returns
-    delivered = sum(
-        o.delivered_at is not None and o.current_status == "delivered" for o in dataset.orders
-    )
+    delivered = dataset.returns.delivered_orders
     assert abs(len(returns) - ctx.cfg.return_rate * delivered) <= 1
     assert len({r.order_id for r in returns}) == len(returns)
     for ret in returns:

@@ -189,6 +189,7 @@ class GeneratedReturns:
     # return id -> targeted open group: an undecided rule, "eligible", "ineligible"
     # (status requested) or "in_progress" (approved or received)
     open_kinds: dict[str, str]
+    delivered_orders: int  # delivered orders the returns were drawn from
 
 
 def _between(r: random.Random, lo: datetime, hi: datetime) -> datetime:
@@ -616,5 +617,10 @@ def build_returns(
         if case.note_id is not None:
             note_ids[return_id] = case.note_id
     return GeneratedReturns(
-        returns=returns, items=items, rules=rules, note_ids=note_ids, open_kinds=open_kinds
+        returns=returns,
+        items=items,
+        rules=rules,
+        note_ids=note_ids,
+        open_kinds=open_kinds,
+        delivered_orders=len(generator.eligible),
     )

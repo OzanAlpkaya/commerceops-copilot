@@ -60,3 +60,10 @@ class SeedConfig(BaseSettings):
     open_ineligible: int = 4
     # Clear-cut eligible returns in progress (approved or received).
     open_in_progress: int = 8
+
+    # In-transit shipments (see seed/transit.py).
+    lost_parcels: int = 8  # current-status shipped orders kept in transit as lost
+    lost_min_overdue_days: int = 14  # lost parcels are at least this far past their ETA
+    recent_transit_days: int = 10  # "recent" means placed within this many days
+    recent_transit: int = 20  # recent orders put in transit (fewer if not enough exist)
+    recent_late_share: float = 1 / 3  # of those, already past their ETA

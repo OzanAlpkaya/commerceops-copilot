@@ -13,6 +13,7 @@ from mock_api.seed.returns import GeneratedReturns, build_returns
 from mock_api.seed.rows import CustomerRow, ProductRow, SupplierRow
 from mock_api.seed.selection import home_order_ids, sample_by_customer
 from mock_api.seed.suppliers import assign_suppliers
+from mock_api.seed.transit import adjust_transit
 
 
 @dataclass(frozen=True, slots=True)
@@ -24,6 +25,8 @@ class SeedDataset:
     customers: list[CustomerRow]
     orders: list[BuiltOrder]
     returns: GeneratedReturns
+    transit_changes: dict[str, str]  # order id -> change made by adjust_transit
+    lost_parcels: list[str]  # order ids kept in transit as lost parcels
 
 
 def build_dataset(data: OlistData, cfg: SeedConfig) -> SeedDataset:
@@ -50,6 +53,8 @@ def build_dataset(data: OlistData, cfg: SeedConfig) -> SeedDataset:
     orders = build_orders(data, selected, products, customer_ids, offset, now, cfg)
     by_sku = {p.sku: p for p in products.values()}
     returns = build_returns(orders, by_sku, cfg, now)
+    # After returns, so orders that have one are never touched.
+    transit = adjust_transit(orders, {r.order_id for r in returns.returns}, cfg, now)
 
     return SeedDataset(
         now=now,
@@ -57,6 +62,8 @@ def build_dataset(data: OlistData, cfg: SeedConfig) -> SeedDataset:
         suppliers=suppliers,
         products=sorted(products.values(), key=lambda p: p.sku),
         customers=customers,
-        orders=orders,
+        orders=transit.orders,
         returns=returns,
+        transit_changes=transit.changes,
+        lost_parcels=transit.lost,
     )

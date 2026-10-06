@@ -3,10 +3,11 @@
 from collections import Counter
 from collections.abc import Mapping
 
-from mock_api.enums import OrderStatus, ReturnStatus
+from mock_api.enums import ReturnStatus, ShipmentStatus
 from mock_api.seed.config import SeedConfig
 from mock_api.seed.dataset import SeedDataset
 from mock_api.seed.dates import start_of_day
+from mock_api.seed.transit import transit_bucket
 
 OPEN_STATUSES = {ReturnStatus.REQUESTED, ReturnStatus.APPROVED, ReturnStatus.RECEIVED}
 
@@ -30,13 +31,18 @@ def summarize(ds: SeedDataset, cfg: SeedConfig, checksums: Mapping[str, str] | N
 
     post = sum(o.placed_at >= policy_change for o in orders)
     legacy = sum(o.placed_at < legacy_cutoff for o in orders)
-    delivered = sum(o.current_status is OrderStatus.DELIVERED for o in ds.orders)
     coupons = Counter(o.coupon_code for o in orders if o.coupon_code)
     with_outlet = sum(any(products[i.sku].is_outlet for i in o.items) for o in ds.orders)
     with_hygiene = sum(any(products[i.sku].is_hygiene for i in o.items) for o in ds.orders)
     shipments = [o.shipment for o in ds.orders if o.shipment is not None]
+    transit = Counter(
+        transit_bucket(o, ds.now, cfg)
+        for o in ds.orders
+        if o.shipment is not None and o.shipment.status == ShipmentStatus.IN_TRANSIT
+    )
     customers_with_orders = Counter(o.customer_id for o in orders)
     returns = ds.returns.returns
+    drawn_from = ds.returns.delivered_orders
     open_returns = [r for r in returns if r.status in OPEN_STATUSES]
 
     n_products = len(ds.products)
@@ -64,8 +70,13 @@ def summarize(ds: SeedDataset, cfg: SeedConfig, checksums: Mapping[str, str] | N
         f"  with hygiene item {_pct(with_hygiene, n_orders)}",
         f"Shipments         {len(shipments):,}  {_counter(Counter(s.carrier for s in shipments))}",
         f"  status            {_counter(Counter(s.status for s in shipments))}",
-        f"Returns           {len(returns):,} = {len(returns) / delivered:.1%} "
-        f"of {delivered:,} delivered orders",
+        f"  in transit        {sum(transit.values()):,}: recent on time "
+        f"{transit['recent_on_time']}, recent late {transit['recent_late']}, "
+        f"lost {transit['lost']}, legacy {transit['legacy']}",
+        f"  marked delivered  {sum(c == 'delivered' for c in ds.transit_changes.values())} "
+        "stale 'shipped' orders",
+        f"Returns           {len(returns):,} = {len(returns) / drawn_from:.1%} "
+        f"of {drawn_from:,} delivered orders (before the in-transit step)",
         f"  reason            {_counter(Counter(r.reason for r in returns))}",
         f"  status            {_counter(Counter(r.status for r in returns))}",
         f"  undecided rules   {_counter(Counter(ds.returns.rules.values()))}",
