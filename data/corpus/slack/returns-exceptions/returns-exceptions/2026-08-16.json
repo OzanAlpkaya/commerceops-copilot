@@ -1,0 +1,59 @@
+[
+    {
+        "client_msg_id": "73e1130f-fcf4-4e36-98fd-cdfe8d9b3716",
+        "type": "message",
+        "text": "RMA-100416 (LH-1006842): the order used SUMMER20. Treating it as a campaign item, exchange only. Note: Coupon order (SUMMER20). Treated as a campaign item: exchange only.",
+        "user": "U05LH2AOBY3",
+        "ts": "1786887036.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1786887036.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1786889316.000100",
+        "reply_users": [
+            "U05LH5DMUR6"
+        ],
+        "replies": [
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1786889316.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "e73dc8c8-da04-40d3-b346-5e7d72ac6e45",
+        "type": "message",
+        "text": "Is a coupon order a campaign item though?",
+        "user": "U05LH5DMUR6",
+        "ts": "1786889316.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1786887036.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    }
+]

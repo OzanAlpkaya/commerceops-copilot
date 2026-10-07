@@ -1,0 +1,59 @@
+[
+    {
+        "client_msg_id": "9f00a9d4-5b71-4899-8057-8a984177070b",
+        "type": "message",
+        "text": "RMA-100342 (LH-1005489): opened Oslo Quilted Cotton Mattress Protector – Super King, DOA, the waterproof layer leaks. Same as the duvet on RMA-100151, so I'm accepting it as an exception.",
+        "user": "U05LH4NKEL5",
+        "ts": "1781167662.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh4nkel5",
+            "first_name": "Niamh",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "team": "T05LUMHOME",
+            "name": "niamh.kelly",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1781167662.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1781169102.000100",
+        "reply_users": [
+            "U05LH4NKEL5"
+        ],
+        "replies": [
+            {
+                "user": "U05LH4NKEL5",
+                "ts": "1781169102.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "986588e7-4e0d-41c6-9e4c-8d690772b77d",
+        "type": "message",
+        "text": "Note on the RMA: Hygiene item opened but defective. Accepted as an exception, see #returns-exceptions.",
+        "user": "U05LH4NKEL5",
+        "ts": "1781169102.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh4nkel5",
+            "first_name": "Niamh",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "team": "T05LUMHOME",
+            "name": "niamh.kelly",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1781167662.000100",
+        "parent_user_id": "U05LH4NKEL5"
+    }
+]

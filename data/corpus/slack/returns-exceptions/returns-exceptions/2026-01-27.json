@@ -1,0 +1,59 @@
+[
+    {
+        "client_msg_id": "f6c8e58d-c808-4cf0-b984-4324881531ff",
+        "type": "message",
+        "text": "RMA-100184 (LH-1003536): outlet Birch Wipe-Clean Tablecloth – 140 x 180 cm, Sage, change of mind. I can't find anything in the policy that stops a refund, so I refunded it. Note: Outlet item. Refund approved: no campaign restriction found in the policy.",
+        "user": "U05LH4NKEL5",
+        "ts": "1769505861.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh4nkel5",
+            "first_name": "Niamh",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "team": "T05LUMHOME",
+            "name": "niamh.kelly",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1769505861.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1769511441.000100",
+        "reply_users": [
+            "U05LH5DMUR6"
+        ],
+        "replies": [
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1769511441.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "aad4a05f-86ee-4c86-b09d-0c16fb1b197c",
+        "type": "message",
+        "text": "I've been giving exchanges on outlet items :shrug:",
+        "user": "U05LH5DMUR6",
+        "ts": "1769511441.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1769505861.000100",
+        "parent_user_id": "U05LH4NKEL5"
+    }
+]

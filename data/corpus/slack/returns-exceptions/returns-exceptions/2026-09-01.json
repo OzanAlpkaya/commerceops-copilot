@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "871b02b0-ccba-4bcf-b393-5d29fef5524c",
+        "type": "message",
+        "text": "Has anyone had an SC refused by the customer? Not sure what to offer next.",
+        "user": "U05LH2AOBY3",
+        "ts": "1788273600.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]

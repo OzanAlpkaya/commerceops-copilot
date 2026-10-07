@@ -1,0 +1,782 @@
+{
+  "macros": [
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470001.json",
+      "id": 26013470001,
+      "title": "Return – changed mind",
+      "active": true,
+      "updated_at": "2024-06-03T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 0,
+      "description": "Customer changed their mind and wants to send an item back.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>Thanks for getting in touch about your order.</p><p>You can send it back within 30 days of delivery and we'll give you a full refund. Returning an item costs you nothing.</p><p>We've raised an RMA for you and will email the returns label shortly. Pack the item securely, attach the label and drop it at any post office.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns changed_mind"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Return – changed mind"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470002.json",
+      "id": 26013470002,
+      "title": "Return – defective item",
+      "active": true,
+      "updated_at": "2026-02-20T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 1,
+      "description": "Item has a fault. Ask for photos if the customer has not sent any.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>I'm sorry the item isn't working as it should.</p><p>Could you send us a few photos or a short video that show the fault? Once we have them we'll arrange a free return and send a replacement or refund you, whichever you prefer.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns defective"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Return – defective item"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470003.json",
+      "id": 26013470003,
+      "title": "Return – wrong item",
+      "active": true,
+      "updated_at": "2025-04-11T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 2,
+      "description": "We sent a different item from the one ordered.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>I'm sorry we sent you the wrong item.</p><p>We'll collect it free of charge and send the right one, or refund you if you prefer. Please keep the item in its packaging until it is collected.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns wrong_item"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Return – wrong item"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470004.json",
+      "id": 26013470004,
+      "title": "Return – damaged in transit",
+      "active": true,
+      "updated_at": "2026-02-20T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 3,
+      "description": "Item arrived damaged. Photos needed within the reporting period.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>I'm sorry your order arrived damaged.</p><p>Please send us photos of the item and the packaging. Damage needs to be reported within 7 days of delivery. Keep the packaging until we've sorted this out, as the carrier may want to see it.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns damaged_in_transit"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Return – damaged in transit"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470005.json",
+      "id": 26013470005,
+      "title": "Return – hygiene item opened",
+      "active": true,
+      "updated_at": "2026-02-20T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 4,
+      "description": "Customer wants to return an opened pillow, bedding, mattress or similar item.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>Thanks for your message.</p><p>For hygiene reasons we can't accept returns of opened pillows, bedding, mattresses, mattress protectors, towels, bathrobes, mattress toppers or weighted blankets. Unopened items in their sealed packaging can be returned as normal.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns hygiene"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Return – hygiene item opened"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470006.json",
+      "id": 26013470006,
+      "title": "Internal – hygiene item opened, reject",
+      "active": true,
+      "updated_at": "2025-05-29T09:30:00Z",
+      "created_at": "2025-05-29T09:30:00Z",
+      "default": false,
+      "position": 5,
+      "description": "Internal note for opened hygiene items. First used on RMA-100031.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hygiene item opened. Rejected under the opened-packaging rule; defect claim not assessed.</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "false"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns hygiene rejected"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Internal – hygiene item opened, reject"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470007.json",
+      "id": 26013470007,
+      "title": "Internal – outlet item, exchange",
+      "active": true,
+      "updated_at": "2025-05-13T09:30:00Z",
+      "created_at": "2025-05-13T09:30:00Z",
+      "default": false,
+      "position": 6,
+      "description": "Internal note: outlet item, change of mind, exchange offered. First used on RMA-100022.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Outlet item. Exchange offered instead of a refund, per team practice for campaign items.</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "false"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns outlet exchange"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Internal – outlet item, exchange"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470008.json",
+      "id": 26013470008,
+      "title": "Internal – outlet item, refund",
+      "active": true,
+      "updated_at": "2025-07-03T09:30:00Z",
+      "created_at": "2025-07-03T09:30:00Z",
+      "default": false,
+      "position": 7,
+      "description": "Internal note: outlet item, change of mind, refunded. First used on RMA-100041.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Outlet item. Refund approved: no campaign restriction found in the policy.</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "false"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns outlet refund"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Internal – outlet item, refund"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470009.json",
+      "id": 26013470009,
+      "title": "Internal – campaign item, changed mind",
+      "active": true,
+      "updated_at": "2025-07-06T09:30:00Z",
+      "created_at": "2025-07-06T09:30:00Z",
+      "default": false,
+      "position": 8,
+      "description": "Internal note: campaign item, change of mind, return rejected. First used on RMA-100050.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Campaign item, changed mind. Return rejected; customer offered store credit.</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "false"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns campaign rejected"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Internal – campaign item, changed mind"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470010.json",
+      "id": 26013470010,
+      "title": "Return – large item collection",
+      "active": true,
+      "updated_at": "2026-02-20T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 9,
+      "description": "Item over 20 kg: book a collection.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>Large items are collected by Hollis Freight. They'll contact you to book a collection date. Please have the item ready at ground-floor level and, if you still have it, in its original packaging.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns collection hollis"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Return – large item collection"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470011.json",
+      "id": 26013470011,
+      "title": "OOW – decline change of mind",
+      "active": true,
+      "updated_at": "2025-01-15T09:30:00Z",
+      "created_at": "2024-09-09T09:30:00Z",
+      "default": false,
+      "position": 10,
+      "description": "Change-of-mind request that came in too late.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>Thanks for getting in touch.</p><p>I'm sorry, but it's too late to return this item for a change of mind under our Returns Policy, so we can't accept the return. If the item is faulty, let us know and we'll look at it under our Warranty and Defects Policy.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns oow"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "OOW – decline change of mind"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470012.json",
+      "id": 26013470012,
+      "title": "Refund – issued",
+      "active": true,
+      "updated_at": "2024-06-03T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 11,
+      "description": "Refund processed after the return was received.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>Your returned item has reached our warehouse and we've processed your refund to the original payment method.</p><p>Your bank or card provider may take a few days to show it.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "refund issued"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Refund – issued"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470013.json",
+      "id": 26013470013,
+      "title": "Refund – when will I get it",
+      "active": true,
+      "updated_at": "2026-02-20T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 12,
+      "description": "Customer asks when their refund will arrive.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>We process refunds within 10 working days of receiving the returned item. Once it's processed, your bank or card provider may take a few more days to show the money.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "refund timing"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Refund – when will I get it"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470014.json",
+      "id": 26013470014,
+      "title": "Exchange – confirm",
+      "active": true,
+      "updated_at": "2026-02-20T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 13,
+      "description": "Confirm an exchange for a different size or colour.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>We've set up your exchange. As soon as the returned item reaches us, we'll send the replacement at no extra delivery charge.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "exchange"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Exchange – confirm"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470015.json",
+      "id": 26013470015,
+      "title": "SC – issue",
+      "active": true,
+      "updated_at": "2026-02-03T09:30:00Z",
+      "created_at": "2025-02-03T09:30:00Z",
+      "default": false,
+      "position": 14,
+      "description": "Internal note when SC is issued instead of a refund.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>SC issued. Amount and reason added to the ticket for finance.</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "false"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "sc"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "SC – issue"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470016.json",
+      "id": 26013470016,
+      "title": "RTS – contact customer",
+      "active": true,
+      "updated_at": "2025-10-02T09:30:00Z",
+      "created_at": "2024-10-01T09:30:00Z",
+      "default": false,
+      "position": 15,
+      "description": "Parcel came back to the warehouse undelivered.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>Your parcel has come back to our warehouse because the carrier couldn't deliver it. Could you confirm your full address and Eircode? We'll send it out again as soon as we hear from you.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "delivery rts"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "RTS – contact customer"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470017.json",
+      "id": 26013470017,
+      "title": "DOA – appliance",
+      "active": true,
+      "updated_at": "2026-04-09T09:30:00Z",
+      "created_at": "2024-11-18T09:30:00Z",
+      "default": false,
+      "position": 16,
+      "description": "Appliance does not work out of the box.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>I'm sorry the appliance isn't working. Please stop using it and unplug it.</p><p>Could you send us the model name from the rating plate and a short video showing what happens when you switch it on? We'll then arrange a free return and a replacement or refund.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "returns defective doa appliance"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "DOA – appliance"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470018.json",
+      "id": 26013470018,
+      "title": "Delivery – where is my order",
+      "active": true,
+      "updated_at": "2026-02-20T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 17,
+      "description": "Customer asks about an order that has not arrived yet.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>Your order is on its way. You can follow it with the tracking number in your dispatch email on the carrier's website.</p><p>The estimated delivery date on your order confirmation is the one to rely on. If the order hasn't arrived by then, reply to this email and we'll check with the carrier.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "delivery wismo"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Delivery – where is my order"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470019.json",
+      "id": 26013470019,
+      "title": "Delivery – late",
+      "active": true,
+      "updated_at": "2024-06-03T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 18,
+      "description": "Order is past its estimated delivery date.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>I'm sorry your order is late. I've asked the carrier to check where it is and will update you as soon as I hear back.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "delivery late"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Delivery – late"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470020.json",
+      "id": 26013470020,
+      "title": "Delivery – parcel not found",
+      "active": true,
+      "updated_at": "2025-07-07T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 19,
+      "description": "The carrier cannot find the parcel.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>The carrier has confirmed that they can't find your parcel. I'm sorry about this. We can send a replacement or refund you, whichever you prefer.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "delivery lost"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Delivery – parcel not found"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470021.json",
+      "id": 26013470021,
+      "title": "Order – cancel before dispatch",
+      "active": true,
+      "updated_at": "2026-02-20T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 20,
+      "description": "Cancel an order that has not left the warehouse.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>We've cancelled your order. As it hadn't left our warehouse, you'll get the full amount back to your original payment method within 10 working days.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "order cancel"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Order – cancel before dispatch"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470022.json",
+      "id": 26013470022,
+      "title": "Order – change delivery address",
+      "active": true,
+      "updated_at": "2024-06-03T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 21,
+      "description": "Customer wants to change the delivery address.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>We can change the delivery address until the order is handed to the carrier. Please reply with the new address and Eircode.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "order address"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Order – change delivery address"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470023.json",
+      "id": 26013470023,
+      "title": "Escalate – team lead",
+      "active": true,
+      "updated_at": "2025-10-20T09:30:00Z",
+      "created_at": "2025-10-20T09:30:00Z",
+      "default": false,
+      "position": 22,
+      "description": "The policy does not clearly cover the case.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Escalated to the team lead: the policy doesn't clearly cover this case. Please don't promise the customer an outcome until it has been decided.</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "false"
+        },
+        {
+          "field": "status",
+          "value": "open"
+        },
+        {
+          "field": "current_tags",
+          "value": "escalated team_lead"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Escalate – team lead"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470024.json",
+      "id": 26013470024,
+      "title": "Request – photos",
+      "active": true,
+      "updated_at": "2024-06-03T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 23,
+      "description": "Ask the customer for photos.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>Could you send us a few photos of the item, and of the packaging if you still have it? You can reply to this email and attach them.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "pending"
+        },
+        {
+          "field": "current_tags",
+          "value": "photos"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Request – photos"
+    },
+    {
+      "url": "https://lumorahome.zendesk.com/api/v2/macros/26013470025.json",
+      "id": 26013470025,
+      "title": "Close – no response",
+      "active": true,
+      "updated_at": "2024-06-03T09:30:00Z",
+      "created_at": "2024-06-03T09:30:00Z",
+      "default": false,
+      "position": 24,
+      "description": "Close a ticket after no reply from the customer.",
+      "actions": [
+        {
+          "field": "comment_value_html",
+          "value": "<p>Hi {{ticket.requester.first_name}},</p><p>We haven't heard back from you, so we're closing this request for now. Just reply to this email if you still need help and the ticket will reopen.</p><p>Kind regards,<br>{{current_user.first_name}}, Lumora Home Customer Care</p>"
+        },
+        {
+          "field": "comment_mode_is_public",
+          "value": "true"
+        },
+        {
+          "field": "status",
+          "value": "solved"
+        },
+        {
+          "field": "current_tags",
+          "value": "no_response"
+        }
+      ],
+      "restriction": null,
+      "raw_title": "Close – no response"
+    }
+  ],
+  "next_page": null,
+  "previous_page": null,
+  "count": 25
+}

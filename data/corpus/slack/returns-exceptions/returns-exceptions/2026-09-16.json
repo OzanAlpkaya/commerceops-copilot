@@ -1,0 +1,143 @@
+[
+    {
+        "client_msg_id": "3293437a-ea87-46a1-af99-4194d646fddc",
+        "type": "message",
+        "text": "RMA-100461 (LH-1007633): the customer opened the Tamsin Seersucker Duvet Cover Set – Single, Sand and says it's faulty. Rejected under the opened-packaging rule. Note: Hygiene item opened. Rejected under the opened-packaging rule; defect claim not assessed.",
+        "user": "U05LH5DMUR6",
+        "ts": "1789520028.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1789520028.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1789526868.000100",
+        "reply_users": [
+            "U05LH5DMUR6",
+            "U05LH6SDOY7"
+        ],
+        "replies": [
+            {
+                "user": "U05LH6SDOY7",
+                "ts": "1789525308.000100"
+            },
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1789526868.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "78256da1-67fd-4f29-a9a7-56bda6837017",
+        "type": "message",
+        "text": "Hm, I thought faulty ones were OK even if opened? See RMA-100151.",
+        "user": "U05LH6SDOY7",
+        "ts": "1789525308.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1789520028.000100",
+        "parent_user_id": "U05LH5DMUR6"
+    },
+    {
+        "client_msg_id": "4778ab0e-415f-48c3-a436-fbe202ecb604",
+        "type": "message",
+        "text": "That was a one-off. The policy says opened hygiene items can't come back, so I'm sticking with it.",
+        "user": "U05LH5DMUR6",
+        "ts": "1789526868.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1789520028.000100",
+        "parent_user_id": "U05LH5DMUR6"
+    },
+    {
+        "client_msg_id": "ea92d416-460b-41a6-985e-fd8ffdaa6d5a",
+        "type": "message",
+        "text": "RMA-100460 (LH-1007111): change of mind, requested 35 days after the order but only 5 days after delivery. OOW if we count from the order date, fine if we count from delivery. Which one?",
+        "user": "U05LH5DMUR6",
+        "ts": "1789528488.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1789528488.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1789531488.000100",
+        "reply_users": [
+            "U05LH3CWAL4"
+        ],
+        "replies": [
+            {
+                "user": "U05LH3CWAL4",
+                "ts": "1789531488.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "c1d54933-120c-4c5a-8dd1-f254cfaa8f8c",
+        "type": "message",
+        "text": "I count from delivery, they've only had it 5 days. Approved it, note: Requested 35 days after order but 5 days after delivery. Approved, counting the window from delivery.",
+        "user": "U05LH3CWAL4",
+        "ts": "1789531488.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh3cwal4",
+            "first_name": "Ciarán",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "team": "T05LUMHOME",
+            "name": "ciaran.walsh",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1789528488.000100",
+        "parent_user_id": "U05LH5DMUR6"
+    }
+]

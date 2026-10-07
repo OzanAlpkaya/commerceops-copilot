@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "5dcda773-6c98-4d6c-b299-0786dbe640a6",
+        "type": "message",
+        "text": "NordPost RTS volume is up this week, mostly incomplete addresses. Please double-check the Eircode before you rebook.",
+        "user": "U05LH3CWAL4",
+        "ts": "1759401660.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh3cwal4",
+            "first_name": "Ciarán",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "team": "T05LUMHOME",
+            "name": "ciaran.walsh",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]

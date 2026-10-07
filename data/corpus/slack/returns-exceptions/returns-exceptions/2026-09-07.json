@@ -1,0 +1,116 @@
+[
+    {
+        "client_msg_id": "723f47da-9509-4989-b6cf-64f67347a109",
+        "type": "message",
+        "text": "RMA-100444 (LH-1007468): opened Yarrow Cotton Terry Bathrobe – S/M, White, DOA, the hem is unravelling. Same as the duvet on RMA-100151, so I'm accepting it as an exception.",
+        "user": "U05LH2AOBY3",
+        "ts": "1788749414.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1788749414.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1788753554.000100",
+        "reply_users": [
+            "U05LH2AOBY3"
+        ],
+        "replies": [
+            {
+                "user": "U05LH2AOBY3",
+                "ts": "1788753554.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "2ccb2754-ce57-4bc2-8c47-48729edca910",
+        "type": "message",
+        "text": "Note on the RMA: Hygiene item opened but defective. Accepted as an exception, see #returns-exceptions.",
+        "user": "U05LH2AOBY3",
+        "ts": "1788753554.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1788749414.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    },
+    {
+        "client_msg_id": "3191faea-e2a9-4aa8-896c-0eb8dbb511f9",
+        "type": "message",
+        "text": "RMA-100446 (LH-1006808): change of mind, 46 days after the order, so I'm rejecting it under v2. Note: Requested 46 days after order. Rejected: outside the 30-day window from order date (policy v2).",
+        "user": "U05LH6SDOY7",
+        "ts": "1788773236.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1788773236.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1788774196.000100",
+        "reply_users": [
+            "U05LH4NKEL5"
+        ],
+        "replies": [
+            {
+                "user": "U05LH4NKEL5",
+                "ts": "1788774196.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "5d55cf7e-6a00-4f41-aa7c-e2815d37f679",
+        "type": "message",
+        "text": "The customer says it arrived late. Is it OOW either way, or is anyone counting from delivery on these?",
+        "user": "U05LH4NKEL5",
+        "ts": "1788774196.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh4nkel5",
+            "first_name": "Niamh",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "team": "T05LUMHOME",
+            "name": "niamh.kelly",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1788773236.000100",
+        "parent_user_id": "U05LH6SDOY7"
+    }
+]

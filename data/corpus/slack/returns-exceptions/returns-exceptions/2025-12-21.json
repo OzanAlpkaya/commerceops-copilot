@@ -1,0 +1,86 @@
+[
+    {
+        "client_msg_id": "f0c91907-3497-4dae-b564-37006966406c",
+        "type": "message",
+        "text": "<@U05LH1BDMR2> RMA-100147 (LH-1002597): opened bath towel, but it's DOA, there's a hole along the seam. OK to take it back?",
+        "user": "U05LH5DMUR6",
+        "ts": "1766296751.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1766296751.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1766299151.000100",
+        "reply_users": [
+            "U05LH1BDMR2",
+            "U05LH5DMUR6"
+        ],
+        "replies": [
+            {
+                "user": "U05LH1BDMR2",
+                "ts": "1766298611.000100"
+            },
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1766299151.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "fdea43b8-9dbf-4b93-86f3-7c9ea802be70",
+        "type": "message",
+        "text": "Yes, it's faulty. Take it back as an exception and refund.",
+        "user": "U05LH1BDMR2",
+        "ts": "1766298611.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh1bdmr2",
+            "first_name": "Burak",
+            "real_name": "Burak Demir",
+            "display_name": "Burak Demir",
+            "team": "T05LUMHOME",
+            "name": "burak.demir",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1766296751.000100",
+        "parent_user_id": "U05LH5DMUR6"
+    },
+    {
+        "client_msg_id": "2f433fae-51be-4afe-b712-11ade294fe50",
+        "type": "message",
+        "text": "Thanks. Note on the RMA: Hygiene item opened but defective. Accepted as an exception, see #returns-exceptions.",
+        "user": "U05LH5DMUR6",
+        "ts": "1766299151.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1766296751.000100",
+        "parent_user_id": "U05LH5DMUR6"
+    }
+]

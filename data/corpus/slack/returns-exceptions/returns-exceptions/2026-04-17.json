@@ -1,0 +1,143 @@
+[
+    {
+        "client_msg_id": "a7a1a76f-0b7d-449c-b6f6-41e507cbeec5",
+        "type": "message",
+        "text": "RMA-100278 (LH-1004366): change of mind, requested 35 days after the order but only 22 days after delivery. OOW if we count from the order date, fine if we count from delivery. Which one?",
+        "user": "U05LH2AOBY3",
+        "ts": "1776413462.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1776413462.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1776420122.000100",
+        "reply_users": [
+            "U05LH1BDMR2",
+            "U05LH5DMUR6"
+        ],
+        "replies": [
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1776418562.000100"
+            },
+            {
+                "user": "U05LH1BDMR2",
+                "ts": "1776420122.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "34dad936-a10f-4eb1-97fb-a1aaf15233a1",
+        "type": "message",
+        "text": "I count from delivery, they've only had it 22 days. Approved it, note: Requested 35 days after order but 22 days after delivery. Approved, counting the window from delivery.",
+        "user": "U05LH5DMUR6",
+        "ts": "1776418562.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1776413462.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    },
+    {
+        "client_msg_id": "e15fe2a0-a6a5-463b-b020-cad33180358e",
+        "type": "message",
+        "text": "Keep handling these the way you have been for now. I've asked Selin to confirm which date the window counts from.",
+        "user": "U05LH1BDMR2",
+        "ts": "1776420122.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh1bdmr2",
+            "first_name": "Burak",
+            "real_name": "Burak Demir",
+            "display_name": "Burak Demir",
+            "team": "T05LUMHOME",
+            "name": "burak.demir",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1776413462.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    },
+    {
+        "client_msg_id": "4b8805ff-e274-4e75-9de3-a7cf10ab17e5",
+        "type": "message",
+        "text": "RMA-100280 (LH-1004501): opened Calla Cotton Terry Bath Towel – Blush, DOA, there's a hole along the seam. Same as the duvet on RMA-100151, so I'm accepting it as an exception.",
+        "user": "U05LH5DMUR6",
+        "ts": "1776455295.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1776455295.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1776456855.000100",
+        "reply_users": [
+            "U05LH5DMUR6"
+        ],
+        "replies": [
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1776456855.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "f678e83c-4335-4da4-ae8a-aa6cc6723760",
+        "type": "message",
+        "text": "Note on the RMA: Hygiene item opened but defective. Accepted as an exception, see #returns-exceptions.",
+        "user": "U05LH5DMUR6",
+        "ts": "1776456855.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1776455295.000100",
+        "parent_user_id": "U05LH5DMUR6"
+    }
+]

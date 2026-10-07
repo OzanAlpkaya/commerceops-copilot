@@ -1,0 +1,59 @@
+[
+    {
+        "client_msg_id": "afbc590c-f94d-4700-9e51-9d7b76282da4",
+        "type": "message",
+        "text": "RMA-100247 (LH-1003982): opened Oslo Linen Pillowcase Pair – Standard, Terracotta, DOA, there's a hole along the seam. Same as the duvet on RMA-100151, so I'm accepting it as an exception.",
+        "user": "U05LH6SDOY7",
+        "ts": "1773492579.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1773492579.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1773497979.000100",
+        "reply_users": [
+            "U05LH6SDOY7"
+        ],
+        "replies": [
+            {
+                "user": "U05LH6SDOY7",
+                "ts": "1773497979.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "39fa9e2f-e9b9-4a18-80fd-b4ff6a5b4929",
+        "type": "message",
+        "text": "Note on the RMA: Hygiene item opened but defective. Accepted as an exception, see #returns-exceptions.",
+        "user": "U05LH6SDOY7",
+        "ts": "1773497979.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1773492579.000100",
+        "parent_user_id": "U05LH6SDOY7"
+    }
+]

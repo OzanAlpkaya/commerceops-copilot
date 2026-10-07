@@ -1,12 +1,11 @@
 import re
 from datetime import date
 
-import pytest
-
 from lumora_corpus.layout import Layout
 from lumora_corpus.params import date_range, in_words, long_date
 from lumora_corpus.policies.build import RenderedDoc, build_policies, campaign_runs
 from lumora_corpus.render.pdf_text import find_page, normalise
+from lumora_corpus.terms import forbidden_in
 from mock_api.policy import PolicyParams
 from mock_api.seed.campaigns import SEASONAL, WELCOME
 from mock_api.seed.catalog import SUBTYPES
@@ -171,40 +170,18 @@ def test_d6_and_d7_shipping_tables(
         assert "See Shipping & Delivery Policy §4." in policy_docs[name].markdown
 
 
-FORBIDDEN = (
-    # D10: topics deliberately absent.
-    "price match",
-    "price-match",
-    "gift",
-    "outside ireland",
-    "international",
-    "abroad",
-    "overseas",
-    "northern ireland",
-    "united kingdom",
-    "extended warranty",
-    "warranty extension",
-    "extend your warranty",
-    # Statutory periods that would resolve D4 or contradict the 30-day rules.
-    "2-year",
-    "two-year",
-    "2 years",
-    "two years",
-    "legal guarantee",
-    "14 days",
-    "14-day",
-    "fourteen days",
-    "withdrawal",
-    "cooling-off",
-    "cooling off",
-)
-
-
-@pytest.mark.parametrize("term", FORBIDDEN)
-def test_d10_forbidden_terms_are_absent(term: str, policy_docs: dict[str, RenderedDoc]) -> None:
+def test_d10_forbidden_terms_are_absent(policy_docs: dict[str, RenderedDoc]) -> None:
     for doc in policy_docs.values():
-        assert term not in doc.markdown.lower(), doc.name
-        assert term not in normalise(" ".join(doc.pages)).lower(), doc.name
+        assert forbidden_in(doc.markdown) == [], doc.name
+        assert forbidden_in(normalise(" ".join(doc.pages))) == [], doc.name
+
+
+def test_forbidden_check_catches_terms() -> None:
+    assert forbidden_in("Gift wrapping and a 2-year legal guarantee") == [
+        "gift",
+        "2-year",
+        "legal guarantee",
+    ]
 
 
 def test_warranty_mentions_only_generic_statutory_rights(

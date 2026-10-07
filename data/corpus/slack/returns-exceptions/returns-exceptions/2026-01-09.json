@@ -1,0 +1,86 @@
+[
+    {
+        "client_msg_id": "f0478604-37bc-49e1-b613-d6438084c167",
+        "type": "message",
+        "text": "RMA-100165 (LH-1003296): the customer opened the Ness Waterproof Mattress Protector – Super King and says it's faulty. Rejected under the opened-packaging rule. Note: Hygiene item opened. Rejected under the opened-packaging rule; defect claim not assessed.",
+        "user": "U05LH3CWAL4",
+        "ts": "1767950993.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh3cwal4",
+            "first_name": "Ciarán",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "team": "T05LUMHOME",
+            "name": "ciaran.walsh",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1767950993.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1767960293.000100",
+        "reply_users": [
+            "U05LH3CWAL4",
+            "U05LH5DMUR6"
+        ],
+        "replies": [
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1767956213.000100"
+            },
+            {
+                "user": "U05LH3CWAL4",
+                "ts": "1767960293.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "7774012f-96dd-4baf-8677-dc8d19460e1f",
+        "type": "message",
+        "text": "Hm, I thought faulty ones were OK even if opened? See RMA-100151.",
+        "user": "U05LH5DMUR6",
+        "ts": "1767956213.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1767950993.000100",
+        "parent_user_id": "U05LH3CWAL4"
+    },
+    {
+        "client_msg_id": "93336be6-51f8-4872-a24f-8e35b9aa6201",
+        "type": "message",
+        "text": "Burak said that one wasn't a change to the policy. Opened is opened.",
+        "user": "U05LH3CWAL4",
+        "ts": "1767960293.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh3cwal4",
+            "first_name": "Ciarán",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "team": "T05LUMHOME",
+            "name": "ciaran.walsh",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1767950993.000100",
+        "parent_user_id": "U05LH3CWAL4"
+    }
+]

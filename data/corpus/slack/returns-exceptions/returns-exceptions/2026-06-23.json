@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "7a7f2574-15c8-4591-a497-17cddcf8bb66",
+        "type": "message",
+        "text": "OOW requests that come in through chat: ask for the order number first. Quite a few turn out to be fine.",
+        "user": "U05LH5DMUR6",
+        "ts": "1782219240.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]
