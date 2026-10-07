@@ -62,7 +62,9 @@ years (about 11 a day). Don't use it for load, rate or volume estimates.
 It is deterministic and idempotent. Each run drops and recreates every table in one
 transaction, so it also wipes returns created through the API and stored idempotency keys.
 
-Knobs live in `src/mock_api/seed/config.py`. `SEED_AS_OF` (default `2026-10-05`) moves the
+Knobs live in `src/mock_api/seed/config.py`. Policy version dates, return windows and
+return fees come from `config/policy_params.yaml`, the file the policy documents are
+generated from. `SEED_AS_OF` (default `2026-10-05`) moves the
 whole timeline. It is fixed on purpose, because order IDs, return windows and eval answers
 depend on it.
 
@@ -87,10 +89,12 @@ Amounts are Olist's BRL figures relabelled as EUR.
 
 ### Placeholder policy used by the seed
 
-Seeded return outcomes follow a placeholder policy until the real one is written:
+Seeded return outcomes follow the policy parameters in `config/policy_params.yaml`:
 
-- v1 applies to orders placed before 1 March 2026: 30 days from delivery.
-- v2 applies from 1 March 2026: 30 days from the order date.
+- v1 applies to orders placed before 1 March 2026: 30 days from delivery, full refund.
+- v2 applies from 1 March 2026: 30 days from the order date. Changed-mind refunds deduct
+  return shipping: €4.95, or €29.00 when the returned items weigh over 20 kg (collected
+  by Hollis Freight; unknown weights count as parcels).
 - Opened hygiene items are not returnable.
 
 Returns that touch none of the undecided rules follow this placeholder policy and carry no

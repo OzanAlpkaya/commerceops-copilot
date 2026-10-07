@@ -2,6 +2,7 @@ import random
 from collections import Counter
 from dataclasses import replace
 from datetime import datetime, timedelta
+from decimal import Decimal
 
 import pytest
 
@@ -10,7 +11,7 @@ from mock_api.seed.config import SeedConfig
 from mock_api.seed.dataset import SeedDataset
 from mock_api.seed.dates import start_of_day
 from mock_api.seed.orders import BuiltOrder
-from mock_api.seed.returns import NOTE_OUTCOMES, _Generator
+from mock_api.seed.returns import NOTE_OUTCOMES, _Generator, return_fee
 from mock_api.seed.rows import ProductRow, ReturnItemRow, ReturnRow
 
 OPEN = (ReturnStatus.REQUESTED, ReturnStatus.APPROVED, ReturnStatus.RECEIVED)
@@ -186,6 +187,46 @@ def test_return_rows_are_consistent(dataset: SeedDataset, ctx: Ctx) -> None:
             assert line.order_item_id in order_items
             assert 1 <= line.quantity <= order_items[line.order_item_id].quantity
     assert [r.id for r in returns] == [f"RMA-{100001 + i}" for i in range(len(returns))]
+
+
+def test_refunds_deduct_the_v2_return_shipping_fee(dataset: SeedDataset, ctx: Ctx) -> None:
+    policy = ctx.cfg.policy
+    fee = policy.return_fees_eur[ReturnReason.CHANGED_MIND]
+    items = {i.id: i for o in dataset.orders for i in o.items}
+    deducted: Counter[Decimal] = Counter()
+    for ret in dataset.returns.returns:
+        if ret.refund_amount is None:
+            continue
+        lines = [(items[ln.order_item_id], ln.quantity) for ln in ctx.lines[ret.id]]
+        goods = sum((item.unit_price * qty for item, qty in lines), Decimal(0))
+        is_v2 = ctx.orders[ret.order_id].order.placed_at >= ctx.policy_change
+        if is_v2 and ret.reason == ReturnReason.CHANGED_MIND:
+            weight = sum((ctx.products[item.sku].weight_g or 0) * qty for item, qty in lines)
+            expected = fee.collection if weight > 20_000 else fee.parcel
+        else:
+            expected = Decimal(0)
+        assert ret.refund_amount == max(goods - expected, Decimal(0)), ret.id
+        deducted[expected] += 1
+    assert deducted[fee.parcel] > 0, "the fixture should exercise the v2 fee"
+    assert deducted[Decimal(0)] > 0
+
+
+def test_collection_fee_for_heavy_returns(dataset: SeedDataset, seed_config: SeedConfig) -> None:
+    policy = seed_config.policy
+    order = next(
+        o for o in dataset.orders if o.order.placed_at >= start_of_day(seed_config.policy_change)
+    )
+    product = next(p for p in dataset.products)
+    heavy = replace(product, weight_g=20_001)
+    light = replace(product, weight_g=None)
+    fee = policy.return_fees_eur[ReturnReason.CHANGED_MIND]
+    assert return_fee(order, ReturnReason.CHANGED_MIND, [(heavy, 1)], policy) == fee.collection
+    assert return_fee(order, ReturnReason.CHANGED_MIND, [(light, 3)], policy) == fee.parcel
+    assert return_fee(order, ReturnReason.DEFECTIVE, [(heavy, 1)], policy) == 0
+    v1_order = next(
+        o for o in dataset.orders if o.order.placed_at < start_of_day(seed_config.policy_change)
+    )
+    assert return_fee(v1_order, ReturnReason.CHANGED_MIND, [(heavy, 1)], policy) == 0
 
 
 def test_just_delivered_orders_are_not_requested_at_the_as_of_instant(

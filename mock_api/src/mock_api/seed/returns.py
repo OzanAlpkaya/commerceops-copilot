@@ -13,6 +13,9 @@ Most returns are generated in targeted groups (quotas); the rest are clear cases
   outcome follows from the placeholder policy (v1: window from delivery, v2: window from
   order date, opened hygiene items not returnable) and they carry no note.
 
+Refunds deduct the return shipping fee where the policy version charges one (v2
+changed-mind returns; see config/policy_params.yaml).
+
 NOTE_TEMPLATES is mirrored in mock_api/README.md; the Slack-exceptions corpus uses the
 same wording.
 """
@@ -32,6 +35,7 @@ from mock_api.enums import (
     ReturnSource,
     ReturnStatus,
 )
+from mock_api.policy import PolicyParams
 from mock_api.seed.config import SeedConfig
 from mock_api.seed.dates import start_of_day
 from mock_api.seed.errors import SeedError
@@ -536,6 +540,35 @@ def _lifecycle(
     return ReturnStatus.REQUESTED, requested, None
 
 
+def return_fee(
+    order: BuiltOrder,
+    reason: ReturnReason,
+    lines: Sequence[tuple[ProductRow, int]],
+    policy: PolicyParams,
+) -> Decimal:
+    """Return shipping deducted from the refund: none before policy v2.
+
+    Returned items over the collection threshold go back by freight, at the collection
+    rate. Products without a known weight count as parcels.
+    """
+    fee = policy.return_fees_eur.get(reason)
+    if fee is None or not policy.version(order.order.placed_at.date()).return_shipping_fee:
+        return Decimal(0)
+    weight_g = sum((product.weight_g or 0) * quantity for product, quantity in lines)
+    return fee.collection if weight_g > policy.collection.threshold_kg * 1000 else fee.parcel
+
+
+def _refund(case: Case, products: Mapping[str, ProductRow], policy: PolicyParams) -> Decimal:
+    goods = sum((ln.item.unit_price * ln.quantity for ln in case.lines), Decimal(0))
+    fee = return_fee(
+        case.order,
+        case.reason,
+        [(products[ln.item.sku], ln.quantity) for ln in case.lines],
+        policy,
+    )
+    return max(goods - fee, Decimal(0))
+
+
 def _note(case: Case) -> str | None:
     if case.note_id is None:
         return None
@@ -555,6 +588,7 @@ def build_returns(
 ) -> GeneratedReturns:
     """`products` is keyed by SKU."""
     generator = _Generator(orders, products, cfg, now)
+    policy = cfg.policy
     target = math.floor(cfg.return_rate * len(generator.eligible) + 0.5)
     targeted = generator.targeted_cases()
     kind_of: dict[int, str] = {id(c): kind for kind, cases in targeted.items() for c in cases}
@@ -573,7 +607,7 @@ def build_returns(
         status, updated_at, closed_at = _lifecycle(case, now, r)
         refund = None
         if status is ReturnStatus.REFUNDED:
-            refund = sum((ln.item.unit_price * ln.quantity for ln in case.lines), Decimal(0))
+            refund = _refund(case, products, policy)
         comment = None
         if r.random() < COMMENT_SHARE:
             item = products[case.lines[0].item.sku].product_type.lower()
