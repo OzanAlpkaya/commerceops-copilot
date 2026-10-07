@@ -6,6 +6,8 @@ import re
 import pytest
 
 from lumora_corpus.layout import Layout
+from lumora_corpus.manifest import build_manifest, manifest_yaml
+from lumora_corpus.policies.build import RenderedDoc
 from lumora_corpus.support.build import SupportCorpus, build_support
 from lumora_corpus.terms import GLOSSARY, uses
 from mock_api.policy import PolicyParams
@@ -32,6 +34,17 @@ def test_committed_support_documents_are_current(
     }
     assert committed == real_support.slack.files
     assert (repo_layout.zendesk / "macros.json").read_bytes() == real_support.zendesk["macros.json"]
+
+
+def test_committed_manifest_is_current(
+    real_support: SupportCorpus,
+    real_seed: tuple[SeedDataset, SeedConfig],
+    policy_docs: dict[str, RenderedDoc],
+    repo_layout: Layout,
+) -> None:
+    ds, cfg = real_seed
+    manifest = build_manifest(list(policy_docs.values()), real_support, ds, cfg.policy, cfg.seed)
+    assert repo_layout.manifest.read_bytes() == manifest_yaml(manifest)
 
 
 def test_d4_anchor_is_an_opened_defective_duvet(real_support: SupportCorpus) -> None:

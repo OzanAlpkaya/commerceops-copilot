@@ -10,7 +10,8 @@ import argparse
 import sys
 from pathlib import Path
 
-from lumora_corpus.layout import Layout
+from lumora_corpus.layout import Layout, write_file
+from lumora_corpus.manifest import build_manifest, manifest_yaml
 from lumora_corpus.params import policy_params
 from lumora_corpus.policies.build import RenderedDoc, build_policies, write_policies
 from lumora_corpus.support.build import SupportCorpus, build_support, write_support
@@ -70,8 +71,11 @@ def main(argv: list[str] | None = None) -> int:
             _support(layout, *_seed(layout))
         else:
             ds, cfg = _seed(layout)
-            _policies(layout)
-            _support(layout, ds, cfg)
+            docs = _policies(layout)
+            support = _support(layout, ds, cfg)
+            manifest = build_manifest(docs, support, ds, cfg.policy, cfg.seed)
+            write_file(layout.manifest, manifest_yaml(manifest))
+            print(f"Manifest: {layout.manifest}  ({len(manifest.difficulties)} difficulties)")
     except MissingOlist as e:
         print(f"corpus failed: {e}", file=sys.stderr)
         return 1
