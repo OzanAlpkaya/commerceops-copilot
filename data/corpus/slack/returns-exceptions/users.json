@@ -1,0 +1,128 @@
+[
+    {
+        "id": "U05LH1BDMR2",
+        "team_id": "T05LUMHOME",
+        "name": "burak.demir",
+        "deleted": false,
+        "real_name": "Burak Demir",
+        "tz": "Europe/Dublin",
+        "tz_label": "Irish Standard Time",
+        "is_admin": true,
+        "is_owner": false,
+        "is_bot": false,
+        "is_app_user": false,
+        "profile": {
+            "title": "Support Team Lead",
+            "real_name": "Burak Demir",
+            "display_name": "Burak Demir",
+            "first_name": "Burak",
+            "last_name": "Demir",
+            "team": "T05LUMHOME"
+        }
+    },
+    {
+        "id": "U05LH2AOBY3",
+        "team_id": "T05LUMHOME",
+        "name": "aoife.byrne",
+        "deleted": false,
+        "real_name": "Aoife Byrne",
+        "tz": "Europe/Dublin",
+        "tz_label": "Irish Standard Time",
+        "is_admin": false,
+        "is_owner": false,
+        "is_bot": false,
+        "is_app_user": false,
+        "profile": {
+            "title": "Support Agent",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "first_name": "Aoife",
+            "last_name": "Byrne",
+            "team": "T05LUMHOME"
+        }
+    },
+    {
+        "id": "U05LH3CWAL4",
+        "team_id": "T05LUMHOME",
+        "name": "ciaran.walsh",
+        "deleted": false,
+        "real_name": "Ciarán Walsh",
+        "tz": "Europe/Dublin",
+        "tz_label": "Irish Standard Time",
+        "is_admin": false,
+        "is_owner": false,
+        "is_bot": false,
+        "is_app_user": false,
+        "profile": {
+            "title": "Support Agent",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "first_name": "Ciarán",
+            "last_name": "Walsh",
+            "team": "T05LUMHOME"
+        }
+    },
+    {
+        "id": "U05LH4NKEL5",
+        "team_id": "T05LUMHOME",
+        "name": "niamh.kelly",
+        "deleted": false,
+        "real_name": "Niamh Kelly",
+        "tz": "Europe/Dublin",
+        "tz_label": "Irish Standard Time",
+        "is_admin": false,
+        "is_owner": false,
+        "is_bot": false,
+        "is_app_user": false,
+        "profile": {
+            "title": "Support Agent",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "first_name": "Niamh",
+            "last_name": "Kelly",
+            "team": "T05LUMHOME"
+        }
+    },
+    {
+        "id": "U05LH5DMUR6",
+        "team_id": "T05LUMHOME",
+        "name": "darragh.murphy",
+        "deleted": false,
+        "real_name": "Darragh Murphy",
+        "tz": "Europe/Dublin",
+        "tz_label": "Irish Standard Time",
+        "is_admin": false,
+        "is_owner": false,
+        "is_bot": false,
+        "is_app_user": false,
+        "profile": {
+            "title": "Support Agent",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "first_name": "Darragh",
+            "last_name": "Murphy",
+            "team": "T05LUMHOME"
+        }
+    },
+    {
+        "id": "U05LH6SDOY7",
+        "team_id": "T05LUMHOME",
+        "name": "sinead.doyle",
+        "deleted": false,
+        "real_name": "Sinéad Doyle",
+        "tz": "Europe/Dublin",
+        "tz_label": "Irish Standard Time",
+        "is_admin": false,
+        "is_owner": false,
+        "is_bot": false,
+        "is_app_user": false,
+        "profile": {
+            "title": "Senior Support Agent",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "first_name": "Sinéad",
+            "last_name": "Doyle",
+            "team": "T05LUMHOME"
+        }
+    }
+]

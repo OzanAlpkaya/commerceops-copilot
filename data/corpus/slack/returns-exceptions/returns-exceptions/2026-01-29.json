@@ -1,0 +1,59 @@
+[
+    {
+        "client_msg_id": "b16e4246-32c4-4176-9c40-f5a43be94b3d",
+        "type": "message",
+        "text": "RMA-100186 (LH-1002824): change of mind on the Orla Beech Wood Kitchen Utensil Set – Dusk Blue, it's an outlet item. Is outlet a campaign item?",
+        "user": "U05LH4NKEL5",
+        "ts": "1769646461.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh4nkel5",
+            "first_name": "Niamh",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "team": "T05LUMHOME",
+            "name": "niamh.kelly",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1769646461.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1769650721.000100",
+        "reply_users": [
+            "U05LH6SDOY7"
+        ],
+        "replies": [
+            {
+                "user": "U05LH6SDOY7",
+                "ts": "1769650721.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "25cb9bbf-f6f8-4458-b9a8-29ac10d29e59",
+        "type": "message",
+        "text": "The policy doesn't say. I've been doing exchanges for outlet, so I offered an exchange. Note: Outlet item. Exchange offered instead of a refund, per team practice for campaign items.",
+        "user": "U05LH6SDOY7",
+        "ts": "1769650721.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1769646461.000100",
+        "parent_user_id": "U05LH4NKEL5"
+    }
+]

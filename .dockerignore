@@ -1,0 +1,17 @@
+# The build context is the repository root; send only what images need.
+.git/
+.github/
+.claude/
+.venv/
+**/__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.env
+data/
+docs/
+infra/
+**/tests/
+copilot/src/
+lumora_corpus/src/
+config/

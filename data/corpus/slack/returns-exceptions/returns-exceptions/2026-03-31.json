@@ -1,0 +1,86 @@
+[
+    {
+        "client_msg_id": "dbdbbb6b-4dfe-4dee-942c-fa4010f6437c",
+        "type": "message",
+        "text": "RMA-100264 (LH-1004371): the customer opened the Quill Duck Feather Duvet – 13.5 Tog and says it's faulty. Rejected under the opened-packaging rule. Note: Hygiene item opened. Rejected under the opened-packaging rule; defect claim not assessed.",
+        "user": "U05LH6SDOY7",
+        "ts": "1774940512.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1774940512.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1774944052.000100",
+        "reply_users": [
+            "U05LH4NKEL5",
+            "U05LH6SDOY7"
+        ],
+        "replies": [
+            {
+                "user": "U05LH4NKEL5",
+                "ts": "1774943512.000100"
+            },
+            {
+                "user": "U05LH6SDOY7",
+                "ts": "1774944052.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "65ee6478-f050-4801-ba35-5e4e1699c4d9",
+        "type": "message",
+        "text": "We accepted an opened duvet that was faulty on RMA-100151, are we not doing that any more?",
+        "user": "U05LH4NKEL5",
+        "ts": "1774943512.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh4nkel5",
+            "first_name": "Niamh",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "team": "T05LUMHOME",
+            "name": "niamh.kelly",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1774940512.000100",
+        "parent_user_id": "U05LH6SDOY7"
+    },
+    {
+        "client_msg_id": "0356da74-01cc-491f-8a1e-fc3269a94aff",
+        "type": "message",
+        "text": "Burak said that one wasn't a change to the policy. Opened is opened.",
+        "user": "U05LH6SDOY7",
+        "ts": "1774944052.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1774940512.000100",
+        "parent_user_id": "U05LH6SDOY7"
+    }
+]

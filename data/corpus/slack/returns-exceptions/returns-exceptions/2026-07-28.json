@@ -1,0 +1,86 @@
+[
+    {
+        "client_msg_id": "3165466b-95d8-401e-a77a-95f57fcbb377",
+        "type": "message",
+        "text": "RMA-100393 (LH-1006378): the customer opened the Dune Bamboo Pillowcase Pair – King, Graphite and says it's faulty. Rejected under the opened-packaging rule. Note: Hygiene item opened. Rejected under the opened-packaging rule; defect claim not assessed.",
+        "user": "U05LH2AOBY3",
+        "ts": "1785214158.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1785214158.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1785219978.000100",
+        "reply_users": [
+            "U05LH2AOBY3",
+            "U05LH6SDOY7"
+        ],
+        "replies": [
+            {
+                "user": "U05LH6SDOY7",
+                "ts": "1785215058.000100"
+            },
+            {
+                "user": "U05LH2AOBY3",
+                "ts": "1785219978.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "72fb215e-bfad-46fe-ab92-b81fbe7ba66e",
+        "type": "message",
+        "text": "Hm, I thought faulty ones were OK even if opened? See RMA-100151.",
+        "user": "U05LH6SDOY7",
+        "ts": "1785215058.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1785214158.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    },
+    {
+        "client_msg_id": "f931f18a-d23a-4b5a-b8b2-a2f452f85b7e",
+        "type": "message",
+        "text": "Burak said that one wasn't a change to the policy. Opened is opened.",
+        "user": "U05LH2AOBY3",
+        "ts": "1785219978.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1785214158.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    }
+]

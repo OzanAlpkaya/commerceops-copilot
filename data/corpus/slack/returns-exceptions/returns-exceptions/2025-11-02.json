@@ -1,0 +1,59 @@
+[
+    {
+        "client_msg_id": "a0d7db04-28d2-4f83-b61d-ad42379506f5",
+        "type": "message",
+        "text": "RMA-100110 (LH-1002116): WELCOME10 on the order, change of mind. Refunded it, a coupon doesn't make it a campaign item. Note: Coupon order (WELCOME10). Refund approved: coupon orders are not campaign items.",
+        "user": "U05LH3CWAL4",
+        "ts": "1762099117.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh3cwal4",
+            "first_name": "Ciarán",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "team": "T05LUMHOME",
+            "name": "ciaran.walsh",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1762099117.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1762100257.000100",
+        "reply_users": [
+            "U05LH5DMUR6"
+        ],
+        "replies": [
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1762100257.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "3711019a-76f6-4757-ae64-9c27470abb3c",
+        "type": "message",
+        "text": "I did the opposite on one last week.",
+        "user": "U05LH5DMUR6",
+        "ts": "1762100257.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1762099117.000100",
+        "parent_user_id": "U05LH3CWAL4"
+    }
+]

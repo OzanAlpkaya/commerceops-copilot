@@ -1,0 +1,29 @@
+[
+    {
+        "id": "C05RTXCPT01",
+        "name": "returns-exceptions",
+        "created": 1757927520,
+        "creator": "U05LH1BDMR2",
+        "is_archived": false,
+        "is_general": false,
+        "members": [
+            "U05LH1BDMR2",
+            "U05LH2AOBY3",
+            "U05LH3CWAL4",
+            "U05LH4NKEL5",
+            "U05LH5DMUR6",
+            "U05LH6SDOY7"
+        ],
+        "topic": {
+            "value": "",
+            "creator": "",
+            "last_set": 0
+        },
+        "purpose": {
+            "value": "Returns that don't fit the usual rules. Post the RMA, the order and what you decided.",
+            "creator": "U05LH1BDMR2",
+            "last_set": 1757927520
+        },
+        "pins": []
+    }
+]

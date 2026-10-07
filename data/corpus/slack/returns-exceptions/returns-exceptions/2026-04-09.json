@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "faec14e9-dd23-4a60-9998-5229a8a03cfb",
+        "type": "message",
+        "text": "If a customer reports a DOA appliance, ask for the model name from the rating plate first. It saves a round trip.",
+        "user": "U05LH6SDOY7",
+        "ts": "1775741160.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]

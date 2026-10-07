@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "599f2ba5-0c29-4372-a7b3-4ca08d28a137",
+        "type": "message",
+        "text": "When a parcel comes back RTS, contact the customer before you refund. Most of them just want it sent again.",
+        "user": "U05LH6SDOY7",
+        "ts": "1764001800.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]

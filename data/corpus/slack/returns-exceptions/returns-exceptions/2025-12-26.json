@@ -1,0 +1,95 @@
+[
+    {
+        "client_msg_id": "bb9c05a3-cfc6-4089-b8e7-13939c586b5d",
+        "type": "message",
+        "text": "<@U05LH1BDMR2> RMA-100151 (LH-1002624): the customer opened the Quill Microfibre Duvet – 10.5 Tog and it's DOA, they say \"Part of the duvet broke on first use\". Opened bedding can't come back under the policy, but it's faulty. Can we take it back?",
+        "user": "U05LH3CWAL4",
+        "ts": "1766748973.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh3cwal4",
+            "first_name": "Ciarán",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "team": "T05LUMHOME",
+            "name": "ciaran.walsh",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1766748973.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1766751373.000100",
+        "reply_users": [
+            "U05LH1BDMR2",
+            "U05LH3CWAL4"
+        ],
+        "replies": [
+            {
+                "user": "U05LH1BDMR2",
+                "ts": "1766750473.000100"
+            },
+            {
+                "user": "U05LH3CWAL4",
+                "ts": "1766751373.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "590ae992-89e7-4c25-8536-841ebb14ff54",
+        "type": "message",
+        "text": "Accept the duvet as an exception: it's defective, not just opened. Refund as normal. This is a one-off, not a change to the policy.",
+        "user": "U05LH1BDMR2",
+        "ts": "1766750473.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh1bdmr2",
+            "first_name": "Burak",
+            "real_name": "Burak Demir",
+            "display_name": "Burak Demir",
+            "team": "T05LUMHOME",
+            "name": "burak.demir",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1766748973.000100",
+        "parent_user_id": "U05LH3CWAL4",
+        "reactions": [
+            {
+                "name": "white_check_mark",
+                "users": [
+                    "U05LH3CWAL4"
+                ],
+                "count": 1
+            }
+        ]
+    },
+    {
+        "client_msg_id": "1f8e68f9-095b-4500-aa7e-4d35a0184e9c",
+        "type": "message",
+        "text": "Done, refund approved. Note on the RMA: Hygiene item opened but defective. Accepted as an exception, see #returns-exceptions.",
+        "user": "U05LH3CWAL4",
+        "ts": "1766751373.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh3cwal4",
+            "first_name": "Ciarán",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "team": "T05LUMHOME",
+            "name": "ciaran.walsh",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1766748973.000100",
+        "parent_user_id": "U05LH3CWAL4"
+    }
+]

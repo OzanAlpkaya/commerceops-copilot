@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "e168a013-900c-4570-bc90-33db3ca3b90f",
+        "type": "message",
+        "text": "Hollis Freight collections are booked two working days out at the moment. Tell the customer when you raise the RMA.",
+        "user": "U05LH4NKEL5",
+        "ts": "1785402900.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh4nkel5",
+            "first_name": "Niamh",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "team": "T05LUMHOME",
+            "name": "niamh.kelly",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]

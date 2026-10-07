@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "1cd4398e-2295-4c2e-906c-4d2dd2356fd7",
+        "type": "message",
+        "text": "Welcome to <#C05RTXCPT01|returns-exceptions>. Post here when a return doesn't fit the usual rules: the RMA, the order number and what you decided, so we can see how we're handling these.",
+        "user": "U05LH1BDMR2",
+        "ts": "1757928000.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh1bdmr2",
+            "first_name": "Burak",
+            "real_name": "Burak Demir",
+            "display_name": "Burak Demir",
+            "team": "T05LUMHOME",
+            "name": "burak.demir",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]

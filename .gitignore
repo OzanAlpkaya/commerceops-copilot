@@ -12,8 +12,11 @@ __pycache__/
 
 # Data (raw downloads stay out of git)
 data/raw/
+# Olist-derived or third-party generated data (make corpus)
+data/generated/
 
 # OS / editors
 .DS_Store
 .idea/
 .vscode/
+.claude/settings.local.json

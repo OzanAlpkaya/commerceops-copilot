@@ -1,0 +1,25 @@
+[project]
+name = "lumora-corpus"
+version = "0.1.0"
+description = "Deterministic generators for Lumora Home's document corpus (simulated client data)"
+readme = "README.md"
+authors = [
+    { name = "Ozan Alpkaya", email = "ozanalpkaya@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "jinja2>=3.1.6",
+    "markdown-it-py>=4.2.0",
+    "mock-api",
+    "pillow>=12.3.0",
+    "pypdfium2>=5.14.0",
+    "pyyaml>=6.0.3",
+    "reportlab>=5.0.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.29,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+mock-api = { workspace = true }

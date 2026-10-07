@@ -1,0 +1,40 @@
+# Promotions and Campaign Codes {{ year }}
+
+Lumora Home · Issued {{ published | long_date }}
+
+## 1. How campaign codes work
+
+Campaign codes give a percentage off the items in your order. Enter the code in the "Discount code" box at checkout; the discount is shown before you pay. The discount applies to the price of the items, not to the delivery charge.
+
+Only one code can be used per order, and codes cannot be combined with each other. A code that is entered after the order has been placed cannot be applied to it. Codes have no cash value.
+
+## 2. Calendar for {{ year }}
+
+| Campaign | Code | Discount | Valid |
+| --- | --- | --- | --- |
+{% for run in current %}
+| {{ run.label }} | {{ run.code }} | {{ run.percent }}% | {{ run.dates }} |
+{% endfor %}
+| {{ welcome.label }} | {{ welcome.code }} | {{ welcome.percent }}% | All year |
+
+## 3. Terms by campaign
+
+{% for run in current %}
+### {{ run.label }}: {{ run.code }}
+
+{{ run.code }}: {{ run.percent }}% off your order, {{ run.dates }}, cannot be combined with {{ welcome.code }}.
+
+{% endfor %}
+### {{ welcome.label }}: {{ welcome.code }}
+
+{{ welcome.code }}: {{ welcome.percent }}% off your order, valid all year. It cannot be combined with a campaign code. Outside the seasonal campaigns it is the only code available.
+
+## 4. Previous campaigns
+
+Codes are reused each year with the same name and discount. Earlier runs, for orders placed before {{ year }}:
+
+| Campaign | Code | Discount | Valid |
+| --- | --- | --- | --- |
+{% for run in previous %}
+| {{ run.label }} | {{ run.code }} | {{ run.percent }}% | {{ run.dates }} |
+{% endfor %}

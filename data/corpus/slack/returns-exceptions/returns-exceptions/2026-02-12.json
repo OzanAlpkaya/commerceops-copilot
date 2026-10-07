@@ -1,0 +1,86 @@
+[
+    {
+        "client_msg_id": "42e0f501-7d03-452d-9554-3173a33dcb66",
+        "type": "message",
+        "text": "RMA-100207 (LH-1003459): the customer opened the Pebble Duck Feather Duvet – 10.5 Tog and says it's faulty. Rejected under the opened-packaging rule. Note: Hygiene item opened. Rejected under the opened-packaging rule; defect claim not assessed.",
+        "user": "U05LH2AOBY3",
+        "ts": "1770878793.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1770878793.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1770885753.000100",
+        "reply_users": [
+            "U05LH2AOBY3",
+            "U05LH4NKEL5"
+        ],
+        "replies": [
+            {
+                "user": "U05LH4NKEL5",
+                "ts": "1770883953.000100"
+            },
+            {
+                "user": "U05LH2AOBY3",
+                "ts": "1770885753.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "e8f346f1-7d28-4f19-a93b-8353d99dc0c3",
+        "type": "message",
+        "text": "We accepted an opened duvet that was faulty on RMA-100151, are we not doing that any more?",
+        "user": "U05LH4NKEL5",
+        "ts": "1770883953.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh4nkel5",
+            "first_name": "Niamh",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "team": "T05LUMHOME",
+            "name": "niamh.kelly",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1770878793.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    },
+    {
+        "client_msg_id": "c46a7c5a-a9b8-426d-957e-fb335dd7458d",
+        "type": "message",
+        "text": "Burak said that one wasn't a change to the policy. Opened is opened.",
+        "user": "U05LH2AOBY3",
+        "ts": "1770885753.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1770878793.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    }
+]

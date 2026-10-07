@@ -1,0 +1,52 @@
+# Lumora Home return policy parameters.
+#
+# Single source of truth for policy version dates, return windows and return fees. The
+# mock order system's seed reads this file (mock_api.policy), and the document corpus
+# (lumora_corpus) renders the policy documents from it. Change a value here, then run
+# `make seed` and `make corpus`.
+
+versions:
+  v1:
+    orders_from: 2024-06-01
+    orders_until: 2026-02-28
+    window_days: 30
+    window_start: delivery
+    return_shipping_fee: false
+  v2:
+    orders_from: 2026-03-01
+    window_days: 30
+    # Policy v2 §2 counts from the order date; §6 still says "of receiving it" (D2).
+    window_start: order
+    return_shipping_fee: true
+
+# Days from delivery to report a problem.
+claims:
+  damaged_report_days: 7
+  wrong_item_report_days: 14
+  defective_days: 30
+
+# Deducted from the refund, for orders under a version with return_shipping_fee: true.
+# Reasons not listed here are free to return.
+return_fees_eur:
+  changed_mind:
+    parcel: "4.95"
+    collection: "29.00"
+
+# Returned items over this weight are collected by the freight carrier.
+collection:
+  carrier: Hollis Freight
+  threshold_kg: 20
+
+refund_working_days: 10
+
+# Typical delivery times (days after the order) and prices. The ranges cover at least 90%
+# of the seeded shipments of each kind, as Olist delivery times are long.
+delivery:
+  standard_parcel:
+    carriers: [Parcelo, NordPost, SwiftLane Express]
+    typical_days: [2, 30]
+    price_eur: ["9.00", "60.00"]
+  large_item:
+    carriers: [Hollis Freight]
+    typical_days: [3, 40]
+    price_eur: ["20.00", "270.00"]

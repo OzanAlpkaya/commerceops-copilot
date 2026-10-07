@@ -1,0 +1,86 @@
+[
+    {
+        "client_msg_id": "33612222-9903-4655-abb5-e17d7b36840a",
+        "type": "message",
+        "text": "RMA-100175 (LH-1002792): campaign item, changed mind, so I rejected the return. Note: Campaign item, changed mind. Return rejected; customer offered store credit.",
+        "user": "U05LH2AOBY3",
+        "ts": "1768890609.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1768890609.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1768900809.000100",
+        "reply_users": [
+            "U05LH2AOBY3",
+            "U05LH5DMUR6"
+        ],
+        "replies": [
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1768896249.000100"
+            },
+            {
+                "user": "U05LH2AOBY3",
+                "ts": "1768900809.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "011d4ebe-fcc6-4cb2-af81-7dd81cac114e",
+        "type": "message",
+        "text": "Did they take the SC?",
+        "user": "U05LH5DMUR6",
+        "ts": "1768896249.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1768890609.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    },
+    {
+        "client_msg_id": "3f350092-e4b6-4405-9a08-e2d3454097ba",
+        "type": "message",
+        "text": "Yes, SC issued.",
+        "user": "U05LH2AOBY3",
+        "ts": "1768900809.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1768890609.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    }
+]

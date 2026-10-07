@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "f3502541-7fd4-48fc-b019-e77db9e7d69e",
+        "type": "message",
+        "text": "Reminder: log an RMA for OOW requests too before you reject them, otherwise they don't show up in the weekly report.",
+        "user": "U05LH4NKEL5",
+        "ts": "1768302120.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh4nkel5",
+            "first_name": "Niamh",
+            "real_name": "Niamh Kelly",
+            "display_name": "Niamh Kelly",
+            "team": "T05LUMHOME",
+            "name": "niamh.kelly",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]

@@ -1,0 +1,143 @@
+[
+    {
+        "client_msg_id": "97dbe730-1344-41c5-9ef5-b2dcdd004e99",
+        "type": "message",
+        "text": "RMA-100254 (LH-1003796): opened Yarrow Microfibre Pillow – Standard, DOA, they say \"The pillow has a manufacturing defect\". Same as the duvet on RMA-100151, so I'm accepting it as an exception.",
+        "user": "U05LH6SDOY7",
+        "ts": "1773839123.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1773839123.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1773844463.000100",
+        "reply_users": [
+            "U05LH6SDOY7"
+        ],
+        "replies": [
+            {
+                "user": "U05LH6SDOY7",
+                "ts": "1773844463.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "e9c6498b-c82e-45ad-a18b-7c491af76cb6",
+        "type": "message",
+        "text": "Note on the RMA: Hygiene item opened but defective. Accepted as an exception, see #returns-exceptions.",
+        "user": "U05LH6SDOY7",
+        "ts": "1773844463.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1773839123.000100",
+        "parent_user_id": "U05LH6SDOY7"
+    },
+    {
+        "client_msg_id": "7622952d-af5f-4838-9b4f-47aae7487109",
+        "type": "message",
+        "text": "RMA-100255 (LH-1003859): the customer opened the Drift Linen Pillowcase Pair – King, White and says it's faulty. Rejected under the opened-packaging rule. Note: Hygiene item opened. Rejected under the opened-packaging rule; defect claim not assessed.",
+        "user": "U05LH6SDOY7",
+        "ts": "1773861530.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1773861530.000100",
+        "reply_count": 2,
+        "reply_users_count": 2,
+        "latest_reply": "1773869690.000100",
+        "reply_users": [
+            "U05LH3CWAL4",
+            "U05LH6SDOY7"
+        ],
+        "replies": [
+            {
+                "user": "U05LH3CWAL4",
+                "ts": "1773865250.000100"
+            },
+            {
+                "user": "U05LH6SDOY7",
+                "ts": "1773869690.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "0ad0de2c-5830-4bd9-a246-456546fbbcb4",
+        "type": "message",
+        "text": "We accepted an opened duvet that was faulty on RMA-100151, are we not doing that any more?",
+        "user": "U05LH3CWAL4",
+        "ts": "1773865250.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh3cwal4",
+            "first_name": "Ciarán",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "team": "T05LUMHOME",
+            "name": "ciaran.walsh",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1773861530.000100",
+        "parent_user_id": "U05LH6SDOY7"
+    },
+    {
+        "client_msg_id": "af545d6b-59d7-489c-9be7-a6e587fada51",
+        "type": "message",
+        "text": "That was a one-off. The policy says opened hygiene items can't come back, so I'm sticking with it.",
+        "user": "U05LH6SDOY7",
+        "ts": "1773869690.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh6sdoy7",
+            "first_name": "Sinéad",
+            "real_name": "Sinéad Doyle",
+            "display_name": "Sinéad Doyle",
+            "team": "T05LUMHOME",
+            "name": "sinead.doyle",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1773861530.000100",
+        "parent_user_id": "U05LH6SDOY7"
+    }
+]

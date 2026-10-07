@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "b6473b43-7920-4f85-8451-26f359c1238f",
+        "type": "message",
+        "text": "Finance asked us to put the amount in the ticket whenever we issue SC.",
+        "user": "U05LH2AOBY3",
+        "ts": "1770112020.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]

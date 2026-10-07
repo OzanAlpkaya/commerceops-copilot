@@ -1,0 +1,22 @@
+[
+    {
+        "client_msg_id": "bdcdebc1-0eab-4716-921b-9abc1b081050",
+        "type": "message",
+        "text": "Any RTS parcel that has been sitting in the warehouse for over a week: check the tracking history before you refund, some were delivered to a neighbour.",
+        "user": "U05LH3CWAL4",
+        "ts": "1779185280.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh3cwal4",
+            "first_name": "Ciarán",
+            "real_name": "Ciarán Walsh",
+            "display_name": "Ciarán Walsh",
+            "team": "T05LUMHOME",
+            "name": "ciaran.walsh",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    }
+]

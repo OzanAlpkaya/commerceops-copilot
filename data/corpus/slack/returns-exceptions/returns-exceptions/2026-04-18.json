@@ -1,0 +1,59 @@
+[
+    {
+        "client_msg_id": "a256e384-e966-4f70-8a6c-2319776f1041",
+        "type": "message",
+        "text": "RMA-100282 (LH-1004429): change of mind, 33 days after the order, so I'm rejecting it under v2. Note: Requested 33 days after order. Rejected: outside the 30-day window from order date (policy v2).",
+        "user": "U05LH2AOBY3",
+        "ts": "1776549434.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh2aoby3",
+            "first_name": "Aoife",
+            "real_name": "Aoife Byrne",
+            "display_name": "Aoife Byrne",
+            "team": "T05LUMHOME",
+            "name": "aoife.byrne",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1776549434.000100",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1776554294.000100",
+        "reply_users": [
+            "U05LH5DMUR6"
+        ],
+        "replies": [
+            {
+                "user": "U05LH5DMUR6",
+                "ts": "1776554294.000100"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": false
+    },
+    {
+        "client_msg_id": "8dc5b20e-5b48-407a-a0bd-9c6780bac87b",
+        "type": "message",
+        "text": "The customer says it arrived late. Is it OOW either way, or is anyone counting from delivery on these?",
+        "user": "U05LH5DMUR6",
+        "ts": "1776554294.000100",
+        "team": "T05LUMHOME",
+        "user_team": "T05LUMHOME",
+        "source_team": "T05LUMHOME",
+        "user_profile": {
+            "avatar_hash": "g05lh5dmur6",
+            "first_name": "Darragh",
+            "real_name": "Darragh Murphy",
+            "display_name": "Darragh Murphy",
+            "team": "T05LUMHOME",
+            "name": "darragh.murphy",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1776549434.000100",
+        "parent_user_id": "U05LH2AOBY3"
+    }
+]
