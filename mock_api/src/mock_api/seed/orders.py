@@ -1,12 +1,12 @@
 """Orders, order lines and shipments built from the selected Olist orders."""
 
-import re
 from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from decimal import ROUND_HALF_UP, Decimal
 
 from mock_api.enums import LegacyOrderStatus, OrderStatus, PaymentMethod, ShipmentStatus
+from mock_api.seed.campaigns import campaign_code, coupon_percent
 from mock_api.seed.catalog import CENT
 from mock_api.seed.config import SeedConfig
 from mock_api.seed.dates import past_only, shift, start_of_day
@@ -69,35 +69,6 @@ def effective_status(
     if olist.status == "shipped" and olist.carrier_at is not None and carrier_at is None:
         return "processing"
     return olist.status
-
-
-def campaign_code(d: date, first_order: bool, seed: int, key: str) -> str:
-    """A campaign coupon that was live on `d`; new customers often used WELCOME10."""
-    md = (d.month, d.day)
-    if (11, 20) <= md <= (12, 2):
-        seasonal = "BF25"
-    elif (12, 3) <= md <= (12, 24):
-        seasonal = "XMAS15"
-    elif md >= (12, 25) or md <= (1, 6):
-        seasonal = "BOXING25"
-    elif 3 <= d.month <= 5:
-        seasonal = "SPRING15"
-    elif 6 <= d.month <= 8:
-        seasonal = "SUMMER20"
-    elif 9 <= d.month <= 10:
-        seasonal = "NEWHOME20"
-    else:
-        seasonal = None
-    if seasonal is None or (first_order and rng(seed, "welcome", key).random() < 0.5):
-        return "WELCOME10"
-    return seasonal
-
-
-def coupon_percent(code: str) -> int:
-    match = re.search(r"(\d+)$", code)
-    if match is None:
-        raise ValueError(f"Coupon code without a percentage: {code}")
-    return int(match.group(1))
 
 
 def _lines(items: list[OlistItem]) -> list[tuple[str, int, Decimal, Decimal]]:

@@ -5,13 +5,7 @@ from mock_api.seed.config import CATEGORY_MAP, SeedConfig
 from mock_api.seed.dataset import SeedDataset
 from mock_api.seed.dates import start_of_day
 from mock_api.seed.olist import OlistData, OlistOrder
-from mock_api.seed.orders import (
-    LEGACY_STATUS,
-    campaign_code,
-    coupon_percent,
-    effective_status,
-    stored_status,
-)
+from mock_api.seed.orders import LEGACY_STATUS, effective_status, stored_status
 from mock_api.seed.selection import home_order_ids, sample_by_customer
 
 CUTOFF = date(2025, 9, 1)
@@ -35,14 +29,6 @@ def test_future_delivery_means_still_shipped() -> None:
     assert effective_status(olist, carrier_at=ts, delivered_at=None) == "shipped"
     assert effective_status(olist, carrier_at=None, delivered_at=None) == "processing"
     assert effective_status(olist, carrier_at=ts, delivered_at=ts) == "delivered"
-
-
-def test_campaign_codes_follow_the_calendar() -> None:
-    assert campaign_code(date(2025, 11, 28), False, 1, "k") == "BF25"
-    assert campaign_code(date(2025, 12, 26), False, 1, "k") == "BOXING25"
-    assert campaign_code(date(2026, 4, 2), False, 1, "k") == "SPRING15"
-    assert campaign_code(date(2026, 2, 10), False, 1, "k") == "WELCOME10"
-    assert coupon_percent("SUMMER20") == 20
 
 
 def test_orders(dataset: SeedDataset, seed_config: SeedConfig) -> None:
