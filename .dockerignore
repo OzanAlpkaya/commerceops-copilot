@@ -13,3 +13,5 @@ docs/
 infra/
 **/tests/
 copilot/src/
+lumora_corpus/src/
+config/

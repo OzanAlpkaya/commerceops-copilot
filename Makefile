@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help up down reset ps logs psql psql-commerce lint format typecheck test check seed ingest
+.PHONY: help up down reset ps logs psql psql-commerce lint format typecheck test check seed corpus ingest
 
 -include .env
 POSTGRES_USER ?= commerceops
@@ -55,6 +55,9 @@ check: lint typecheck test ## Run all checks (same as CI)
 
 seed: ## Reset the mock order database to the Olist-based seed data
 	@MOCK_API_DATABASE_URL=$(COMMERCE_DATABASE_URL) uv run --package mock-api python -m mock_api.seed
+
+corpus: ## Build the client's document corpus (deterministic; needs data/raw/olist for all parts)
+	uv run --package lumora-corpus python -m lumora_corpus all
 
 ingest: ## Ingest the document corpus (Day 4)
 	@echo "Not implemented yet"

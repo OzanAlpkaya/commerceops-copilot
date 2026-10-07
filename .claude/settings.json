@@ -9,6 +9,8 @@
       "Bash(make ps)",
       "Bash(make up)",
       "Bash(make seed)",
+      "Bash(make corpus)",
+      "Bash(uv run --package lumora-corpus python -m lumora_corpus *)",
       "Bash(uv run pytest *)",
       "Bash(uv run ruff *)",
       "Bash(uv run pyright *)",

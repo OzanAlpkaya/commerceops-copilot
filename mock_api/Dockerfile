@@ -11,6 +11,7 @@ WORKDIR /app
 COPY pyproject.toml uv.lock ./
 COPY mock_api/pyproject.toml mock_api/README.md mock_api/
 COPY copilot/pyproject.toml copilot/README.md copilot/
+COPY lumora_corpus/pyproject.toml lumora_corpus/README.md lumora_corpus/
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev --package mock-api --no-install-workspace
 

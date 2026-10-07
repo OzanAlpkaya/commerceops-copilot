@@ -7,4 +7,5 @@ package (mock_api/src/mock_api). Importing the real packages here, first, preven
 """
 
 import copilot  # noqa: F401
+import lumora_corpus  # noqa: F401
 import mock_api  # noqa: F401

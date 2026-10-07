@@ -8,6 +8,7 @@ dependencies = []
 members = [
     "mock_api",
     "copilot",
+    "lumora_corpus",
 ]
 
 [dependency-groups]
@@ -25,18 +26,18 @@ dev = [
 line-length = 100
 target-version = "py312"
 # src layout: lets isort tell workspace packages (first-party) from dependencies.
-src = ["mock_api/src", "copilot/src"]
+src = ["mock_api/src", "copilot/src", "lumora_corpus/src"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
 
 [tool.pyright]
 pythonVersion = "3.12"
-include = ["mock_api", "copilot"]
+include = ["mock_api", "copilot", "lumora_corpus"]
 typeCheckingMode = "standard"
 venvPath = "."
 venv = ".venv"
 
 [tool.pytest.ini_options]
-testpaths = ["mock_api/tests", "copilot/tests"]
+testpaths = ["mock_api/tests", "copilot/tests", "lumora_corpus/tests"]
 addopts = "--import-mode=importlib"
