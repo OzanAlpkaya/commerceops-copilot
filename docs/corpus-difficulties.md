@@ -10,8 +10,10 @@ the week 2 eval set. Client context: `docs/01-discovery.md`.
   ground truth), Slack export as JSON in Slack's export format, Zendesk macros as a JSON
   export, supplier documents as PDF.
 - Single source of truth: `config/policy_params.yaml` holds version dates, window
-  lengths and return fees. Documents are generated from it and the seed is checked
-  against it.
+  lengths and return fees. Documents are generated from it and the seed reads it.
+- No statutory periods: the EU 2-year legal guarantee and the 14-day withdrawal period
+  appear nowhere in the corpus. They would resolve D4 and contradict the 30-day rules.
+  The warranty document says only that it does not affect statutory rights.
 - Every difficulty is listed in a machine-readable manifest
   (`data/ground_truth/corpus_manifest.yaml`) with the exact document and section, so
   week 2 evals can target it. Each difficulty gets at least 5 eval questions.
@@ -61,7 +63,9 @@ the week 2 eval set. Client context: `docs/01-discovery.md`.
 - **Where:** §5 "Hygiene items" in both policy versions, `warranty-and-defects.pdf`,
   Slack `#returns-exceptions`.
 - **How it looks:** Policy: "Opened pillows, bedding, mattresses and mattress protectors
-  cannot be returned for hygiene reasons." Warranty document: "Defective items can be
+  cannot be returned for hygiene reasons. The same applies to towels, bathrobes, mattress
+  toppers and weighted blankets." (the second sentence covers the other hygiene products
+  in the seed). Warranty document: "Defective items can be
   returned for a replacement or refund within 30 days of delivery", with no mention of
   hygiene items. In Slack, the team lead accepts an opened defective duvet "as an
   exception"; other messages show the opposite decision, using the H1/H2 note wording
@@ -75,9 +79,9 @@ the week 2 eval set. Client context: `docs/01-discovery.md`.
 
 - **Where:** `promo-codes-2026.pdf` (codes with validity and terms), supplier PDFs
   (SKUs), `shipping-and-delivery.pdf` (carrier names).
-- **How it looks:** "BOXING25: 25% off selected decor, 26–31 December 2025, cannot be
-  combined with WELCOME10." Similar codes sit next to each other (BF25, BOXING25,
-  XMAS15).
+- **How it looks:** "BOXING25: 25% off your order, 25 December 2025 – 6 January 2026,
+  cannot be combined with WELCOME10." Codes, dates and discounts follow the seed's
+  campaign table. Similar codes sit next to each other (BF25, XMAS15, BOXING25).
 - **What it tests:** Keyword search; the case for hybrid search over vector-only search.
 - **Expected behaviour:** Retrieves the passage with the exact code or SKU and never
   answers from a similar one.
@@ -88,7 +92,10 @@ the week 2 eval set. Client context: `docs/01-discovery.md`.
   and the return shipping costs table.
 - **How it looks:** Return shipping is free for defective, wrong_item and
   damaged_in_transit; €4.95 is deducted for changed_mind; collection by Hollis Freight
-  (items over 20 kg) costs €29.
+  (items over 20 kg) costs €29. The fees apply to orders placed from 1 March 2026 (policy
+  v2); v1 orders get a full refund, and the seed deducts the fees from v2 refunds. The
+  delivery table has one row per carrier, split into standard parcels and large items,
+  with ranges that cover the seeded delivery times.
 - **What it tests:** Table-aware chunking; keeping header rows with their values.
 - **Expected behaviour:** Gives the exact figure and cites the table.
 
@@ -118,7 +125,8 @@ the week 2 eval set. Client context: `docs/01-discovery.md`.
 ### D10 — Deliberate gaps
 
 - **Where:** Nowhere. These topics are absent on purpose: price matching, gift wrapping,
-  shipping outside Ireland, extended warranties.
+  shipping outside Ireland, extended warranties. Statutory periods (see General rules)
+  are absent too; a test checks a list of forbidden terms against every document.
 - **What it tests:** Abstention.
 - **Expected behaviour:** Says the documents do not cover the topic and suggests
   escalating. Never invents a policy.
