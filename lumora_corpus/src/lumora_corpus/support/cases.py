@@ -18,6 +18,7 @@ class SeedCase:
     product_name: str
     product_type: str
     coupon_code: str | None
+    customer_comment: str | None
     days_since_order: int
     days_since_delivery: int
 
@@ -51,6 +52,7 @@ def decided_cases(ds: SeedDataset) -> dict[str, list[SeedCase]]:
                 product_name=product.name,
                 product_type=product.product_type,
                 coupon_code=built.order.coupon_code,
+                customer_comment=ret.customer_comment,
                 days_since_order=(ret.requested_at - built.order.placed_at).days,
                 days_since_delivery=(ret.requested_at - built.delivered_at).days,
             )

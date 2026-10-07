@@ -1,12 +1,13 @@
 """Slack export and Zendesk macros, built from the synthetic fixture dataset."""
 
 import json
+from dataclasses import replace
 from datetime import UTC, datetime
 
 import pytest
 
 from lumora_corpus.support.build import SupportCorpus, build_support
-from lumora_corpus.support.slack import CHANNEL_NAME, LEAD, USERS
+from lumora_corpus.support.slack import CHANNEL_NAME, LEAD, USERS, build_slack
 from lumora_corpus.support.zendesk import CHANGED_MIND
 from lumora_corpus.terms import GLOSSARY, expands, forbidden_in, uses
 from mock_api.seed.config import SeedConfig
@@ -84,6 +85,21 @@ def test_every_h1_case_is_in_the_channel_with_its_note(
         thread = [m for m in slack.messages if slack.thread_keys[str(m["ts"])] == key]
         assert any(case.agent_note in str(m["text"]) for m in thread)
         assert case.return_id in str(thread[0]["text"])
+
+
+def test_h1_threads_quote_the_seeded_customer_comment(
+    fixture_support: SupportCorpus, fixture_seed: tuple[SeedDataset, SeedConfig]
+) -> None:
+    """The fault described in Slack must not contradict the return's customer_comment."""
+    _, cfg = fixture_seed
+    comment = "Part of the duvet broke on first use."
+    cases = dict(fixture_support.cases)
+    cases["H1"] = [replace(c, customer_comment=comment) for c in cases["H1"]]
+    slack = build_slack(cases, cfg.seed, cfg.policy.versions.v2.orders_from)
+    for case in cases["H1"]:
+        key = f"H1:{case.return_id}"
+        first = next(m for m in slack.messages if slack.thread_keys[str(m["ts"])] == key)
+        assert '"Part of the duvet broke on first use"' in str(first["text"]), case.return_id
 
 
 def test_case_threads_quote_notes_and_fit_the_timeline(fixture_support: SupportCorpus) -> None:

@@ -230,6 +230,9 @@ def _h1_threads(cases: list[SeedCase], anchor: SeedCase, seed: int) -> list[Thre
         r = rng(seed, "slack-h1", case.return_id)
         agent = r.choice(AGENTS)
         defect = r.choice(DEFECTS.get(case.product_type, DEFAULT_DEFECTS))
+        if case.customer_comment:
+            # Quote the seeded comment rather than invent a different fault.
+            defect = f'they say "{case.customer_comment.rstrip(".")}"'
         item = case.product_type.lower()
         ref = f"{case.return_id} ({case.order_id})"
         if case is anchor:
